@@ -44,8 +44,8 @@ export default function ProjectUpdatesManager({
   }
 
   return (
-    <div className="border border-bog-500/50 bg-bog-800/40 p-5">
-      <h3 className="font-display text-base text-bone-100">
+    <div className="border border-ink-500/50 bg-ink-800/40 p-5">
+      <h3 className="font-display text-base text-parchment-100">
         Gelisme Kayitlari
       </h3>
 
@@ -54,16 +54,16 @@ export default function ProjectUpdatesManager({
           {updates.map((update) => (
             <li
               key={update.id}
-              className="flex items-start justify-between gap-3 border-b border-bog-500/30 pb-3"
+              className="flex items-start justify-between gap-3 border-b border-ink-500/30 pb-3"
             >
               <div className="min-w-0">
-                <p className="text-xs text-bone-500">
+                <p className="text-xs text-parchment-500">
                   {formatDate(update.createdAt)}
                 </p>
-                <p className="text-sm font-medium text-bone-200">
+                <p className="text-sm font-medium text-parchment-200">
                   {update.title}
                 </p>
-                <p className="mt-1 line-clamp-2 text-xs text-bone-500">
+                <p className="mt-1 line-clamp-2 text-xs text-parchment-500">
                   {update.body}
                 </p>
               </div>
@@ -82,7 +82,7 @@ export default function ProjectUpdatesManager({
           placeholder="Kayit basligi"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full rounded-sm border border-bog-500/60 bg-bog-900 px-3 py-2 text-sm text-bone-200 focus:border-ooze-500"
+          className="w-full rounded-sm border border-ink-500/60 bg-ink-900 px-3 py-2 text-sm text-parchment-200 focus:border-vex-500"
         />
         <textarea
           required
@@ -90,13 +90,13 @@ export default function ProjectUpdatesManager({
           placeholder="Ne oldu, ne degisti?"
           value={body}
           onChange={(e) => setBody(e.target.value)}
-          className="w-full rounded-sm border border-bog-500/60 bg-bog-900 px-3 py-2 text-sm text-bone-200 focus:border-ooze-500"
+          className="w-full rounded-sm border border-ink-500/60 bg-ink-900 px-3 py-2 text-sm text-parchment-200 focus:border-vex-500"
         />
-        {error && <p className="text-xs text-ember-300">{error}</p>}
+        {error && <p className="text-xs text-wound-400">{error}</p>}
         <button
           type="submit"
           disabled={loading}
-          className="flex items-center gap-2 rounded-sm border border-ooze-600/50 px-3 py-2 text-xs font-medium text-ooze-300 hover:bg-ooze-900/30 disabled:opacity-60"
+          className="flex items-center gap-2 rounded-sm border border-vex-600/50 px-3 py-2 text-xs font-medium text-vex-300 hover:bg-vex-900/30 disabled:opacity-60"
         >
           <FontAwesomeIcon icon={faPlus} className="h-3 w-3" />
           Kayit Ekle

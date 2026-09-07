@@ -6,7 +6,7 @@ import { prisma } from "@/lib/prisma";
 export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
-    maxAge: 30 * 24 * 60 * 60, // 30 gun
+    maxAge: 2592000,
   },
   pages: {
     signIn: "/admin/login",
@@ -48,8 +48,8 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.role = (user as { role?: string }).role;
-        token.id = (user as { id?: string }).id;
+        token.role = (user as { role: string }).role;
+        token.id = (user as { id: string }).id;
       }
       return token;
     },

@@ -21,7 +21,7 @@ export default function Newsletter() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Bir sorun oldu");
       setStatus("done");
-      setMessage("Duman isaretin alindi. Bataklik haberlerini kacirmayacaksin.");
+      setMessage("Duman işaretin alındı. Bataklık haberlerini kaçırmayacaksın.");
       setEmail("");
     } catch (err) {
       setStatus("error");
@@ -31,12 +31,14 @@ export default function Newsletter() {
 
   return (
     <div>
-      <h3 className="font-display text-sm text-bone-300">Bataklik Postasi</h3>
-      <p className="mt-3 text-sm text-bone-500">
-        Yeni surumler ve yazilar cikinca haberin olsun.
+      <h3 className="font-display text-xs uppercase tracking-[0.2em] text-bronze-400">
+        Bataklık Postası
+      </h3>
+      <p className="mt-3 text-sm text-parchment-500">
+        Yeni sürümler ve yazılar çıkınca haberin olsun.
       </p>
       {status === "done" ? (
-        <p className="mt-3 flex items-center gap-2 text-sm text-ooze-400">
+        <p className="mt-3 flex items-center gap-2 text-sm text-vex-400">
           <FontAwesomeIcon icon={faCheck} className="h-4 w-4" />
           {message}
         </p>
@@ -52,20 +54,20 @@ export default function Newsletter() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="sen@bataklik.com"
-            className="w-full min-w-0 rounded-sm border border-bog-500/60 bg-bog-800 px-3 py-2 text-sm text-bone-200 placeholder:text-bone-500/60 focus:border-ooze-500"
+            className="hud-panel w-full min-w-0 bg-ink-800 px-3 py-2 text-sm text-parchment-200 placeholder:text-parchment-500/50 focus:outline-none"
           />
           <button
             type="submit"
             disabled={status === "loading"}
-            className="flex shrink-0 items-center gap-2 rounded-sm bg-ooze-600 px-3 py-2 text-sm font-medium text-bog-900 transition-colors hover:bg-ooze-500 disabled:opacity-60"
+            className="btn-hud flex shrink-0 items-center gap-2 bg-vex-600 px-3 py-2 text-sm font-medium text-ink-950 disabled:opacity-60"
           >
             <FontAwesomeIcon icon={faScroll} className="h-3.5 w-3.5" />
-            Katil
+            Katıl
           </button>
         </form>
       )}
       {status === "error" && (
-        <p className="mt-2 text-xs text-ember-300">{message}</p>
+        <p className="mt-2 text-xs text-wound-400">{message}</p>
       )}
     </div>
   );

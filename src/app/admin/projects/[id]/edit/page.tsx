@@ -16,7 +16,7 @@ export default async function EditProjectPage({
 
   return (
     <div>
-      <h1 className="font-display text-2xl text-bone-100">
+      <h1 className="font-display text-2xl text-parchment-100">
         Projeyi Duzenle: {project.title}
       </h1>
       <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_320px]">

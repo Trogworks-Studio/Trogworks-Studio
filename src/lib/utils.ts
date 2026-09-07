@@ -23,19 +23,19 @@ export function formatDateShort(date: Date | string): string {
 }
 
 export const statusLabels: Record<string, string> = {
-  PLANLANIYOR: "Planlaniyor",
-  GELISTIRILIYOR: "Gelistiriliyor",
-  ERKEN_ERISIM: "Erken Erisim",
-  YAYINDA: "Yayinda",
-  ARSIVLENDI: "Arsivlendi",
+  PLANLANIYOR: "Planlanıyor",
+  GELISTIRILIYOR: "Geliştiriliyor",
+  ERKEN_ERISIM: "Erken Erişim",
+  YAYINDA: "Yayında",
+  ARSIVLENDI: "Arşivlendi",
 };
 
 export const statusColors: Record<string, string> = {
-  PLANLANIYOR: "bg-bone-400/20 text-bone-300 border-bone-400/40",
-  GELISTIRILIYOR: "bg-rune-500/20 text-rune-200 border-rune-500/40",
-  ERKEN_ERISIM: "bg-ember-400/20 text-ember-200 border-ember-400/40",
-  YAYINDA: "bg-ooze-500/20 text-ooze-200 border-ooze-500/40",
-  ARSIVLENDI: "bg-bog-500/40 text-bone-400 border-bog-400/40",
+  PLANLANIYOR: "border-parchment-500/50 text-parchment-300 bg-parchment-500/10",
+  GELISTIRILIYOR: "border-hex-400/60 text-hex-300 bg-hex-500/10",
+  ERKEN_ERISIM: "border-bronze-400/60 text-bronze-300 bg-bronze-500/10",
+  YAYINDA: "border-vex-400/60 text-vex-300 bg-vex-500/10",
+  ARSIVLENDI: "border-ink-500/60 text-parchment-500 bg-ink-700/40",
 };
 
 export const platformLabels: Record<string, string> = {

@@ -1,17 +1,19 @@
 import Link from "next/link";
+import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRight,
-  faHammer,
   faCode,
   faGamepad,
   faScroll,
+  faShieldHalved,
 } from "@fortawesome/free-solid-svg-icons";
 import { prisma } from "@/lib/prisma";
 import SectionHeading from "@/components/SectionHeading";
 import ProjectCard from "@/components/ProjectCard";
 import GameCard from "@/components/GameCard";
 import BlogCard from "@/components/BlogCard";
+import SpeechBubble from "@/components/SpeechBubble";
 
 export const revalidate = 60;
 
@@ -58,82 +60,102 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden border-b border-bog-500/40">
-        <div className="mx-auto max-w-6xl px-5 py-20 sm:py-28">
-          <div className="max-w-2xl">
-            <p className="rune-divider justify-start font-display text-sm italic text-rune-300 before:hidden">
-              <FontAwesomeIcon icon={faHammer} className="h-3.5 w-3.5" />
-              Bataklikta kurulu bir yazilim atolyesi
+      {/* HERO */}
+      <section className="relative overflow-hidden border-b border-bronze-700/40">
+        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div>
+            <p className="rune-divider justify-start font-display text-xs uppercase tracking-[0.3em] text-hex-300 before:hidden">
+              <FontAwesomeIcon icon={faShieldHalved} className="h-3.5 w-3.5" />
+              Bataklıkta kurulu bir yazılım atölyesi
             </p>
-            <h1 className="mt-5 font-display text-4xl leading-[1.1] text-bone-100 sm:text-6xl">
-              Taslarin altindan
+            <h1 className="mt-5 font-display text-4xl leading-[1.1] text-parchment-100 sm:text-6xl">
+              Taşların altından
               <br />
-              <span className="text-ooze-400">calisan yazilimlar</span>{" "}
-              cikariyoruz.
+              <span className="text-vex-400">çalışan yazılımlar</span>{" "}
+              çıkarıyoruz.
             </h1>
-            <p className="mt-6 max-w-lg text-lg leading-relaxed text-bone-400">
-              Trogworks Studio; arac, oyun ve deneysel yazilim projelerini
-              gun yuzune cikaran bagimsiz bir atolye. Her adimi, her surumu
+            <p className="mt-6 max-w-lg text-lg leading-relaxed text-parchment-400">
+              Trogworks Studio; araç, oyun ve deneysel yazılım projelerini
+              gün yüzüne çıkaran bağımsız bir atölye. Her görevin ilerlemesini
               buradan takip edebilirsin.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/projects"
-                className="flex items-center gap-2 rounded-sm bg-ooze-600 px-5 py-3 text-sm font-medium text-bog-900 shadow-glow-ooze transition-colors hover:bg-ooze-500"
+                className="btn-hud flex items-center gap-2 bg-vex-600 px-5 py-3 text-sm font-display text-ink-950"
               >
-                Projeleri Kesfet
+                Görevleri Keşfet
                 <FontAwesomeIcon icon={faArrowRight} className="h-3.5 w-3.5" />
               </Link>
               <Link
                 href="/games"
-                className="flex items-center gap-2 rounded-sm border border-rune-500/50 px-5 py-3 text-sm font-medium text-rune-200 transition-colors hover:bg-rune-900/30"
+                className="btn-hud flex items-center gap-2 border border-hex-500/50 bg-ink-800 px-5 py-3 text-sm font-display text-hex-200"
               >
-                Oyunlara Goz At
+                Arenaya Göz At
               </Link>
             </div>
 
-            <div className="mt-14 grid max-w-md grid-cols-3 gap-6 border-t border-bog-500/40 pt-6">
-              <div>
-                <p className="font-display text-2xl text-bone-100">{projectCount}</p>
-                <p className="text-xs text-bone-500">Aktif Proje</p>
+            <div className="mt-14 grid max-w-md grid-cols-3 gap-3">
+              <div className="hud-panel px-4 py-3 text-center">
+                <p className="font-display text-2xl text-parchment-100">{projectCount}</p>
+                <p className="text-[10px] uppercase tracking-wider text-parchment-500">Aktif Görev</p>
               </div>
-              <div>
-                <p className="font-display text-2xl text-bone-100">{gameCount}</p>
-                <p className="text-xs text-bone-500">Gelisen Oyun</p>
+              <div className="hud-panel px-4 py-3 text-center">
+                <p className="font-display text-2xl text-parchment-100">{gameCount}</p>
+                <p className="text-[10px] uppercase tracking-wider text-parchment-500">Arena Oyunu</p>
               </div>
-              <div>
-                <p className="font-display text-2xl text-bone-100">{postCount}</p>
-                <p className="text-xs text-bone-500">Gunluk Kaydi</p>
+              <div className="hud-panel px-4 py-3 text-center">
+                <p className="font-display text-2xl text-parchment-100">{postCount}</p>
+                <p className="text-[10px] uppercase tracking-wider text-parchment-500">Günlük Kaydı</p>
               </div>
+            </div>
+          </div>
+
+          <div className="relative mx-auto w-full max-w-sm">
+            <div className="animate-float relative mx-auto aspect-square w-full max-w-xs">
+              <Image
+                src="/trog/wrench.webp"
+                alt="Trogworks maskotu, elinde bir İngiliz anahtarıyla"
+                fill
+                className="object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.6)]"
+                priority
+              />
             </div>
           </div>
         </div>
 
-        {/* dekoratif bataklik izi */}
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-ooze-600/10 blur-3xl"
+          className="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-vex-600/10 blur-3xl"
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-10 bottom-0 h-64 w-64 rounded-full bg-rune-600/10 blur-3xl"
+          className="pointer-events-none absolute -right-10 bottom-0 h-64 w-64 rounded-full bg-hex-600/10 blur-3xl"
         />
+      </section>
+
+      {/* Mascot intro line */}
+      <section className="mx-auto max-w-6xl px-5 py-16">
+        <SpeechBubble image="/trog/thumbsup.webp" alt="Trog maskotu başparmak yukarı">
+          <p>
+            <span className="font-display text-parchment-100">Hoş geldin, gezgin.</span>{" "}
+            Aşağıda atölyenin şu anki durumunu bulacaksın — hangi görevler
+            sürüyor, hangi oyunlar kazanda kaynıyor, hangi kayıtlar
+            düşürülmüş. Kemerini bağla.
+          </p>
+        </SpeechBubble>
       </section>
 
       {/* Featured projects */}
       {featuredProjects.length > 0 && (
-        <section className="mx-auto max-w-6xl px-5 py-20">
+        <section className="mx-auto max-w-6xl px-5 py-10">
           <div className="flex flex-wrap items-end justify-between gap-4">
-            <SectionHeading
-              kicker="Atolye tezgahindan"
-              title="Öne cikan projeler"
-            />
+            <SectionHeading kicker="Atölye tezgahından" title="Öne Çıkan Görevler" />
             <Link
               href="/projects"
-              className="flex items-center gap-1.5 text-sm text-ooze-400 hover:text-ooze-300"
+              className="flex items-center gap-1.5 font-display text-sm text-vex-400 hover:text-vex-300"
             >
-              Tumunu gor <FontAwesomeIcon icon={faArrowRight} className="h-3 w-3" />
+              Tümünü gör <FontAwesomeIcon icon={faArrowRight} className="h-3 w-3" />
             </Link>
           </div>
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -146,15 +168,15 @@ export default async function HomePage() {
 
       {/* Featured games */}
       {featuredGames.length > 0 && (
-        <section className="border-t border-bog-500/40 bg-bog-900/50">
-          <div className="mx-auto max-w-6xl px-5 py-20">
+        <section className="border-t border-bronze-700/40 bg-ink-900/60">
+          <div className="mx-auto max-w-6xl px-5 py-16">
             <div className="flex flex-wrap items-end justify-between gap-4">
-              <SectionHeading kicker="Kazanda kaynayan" title="Gelisen oyunlar" />
+              <SectionHeading kicker="Kazanda kaynayan" title="Gelişen Oyunlar" />
               <Link
                 href="/games"
-                className="flex items-center gap-1.5 text-sm text-rune-300 hover:text-rune-200"
+                className="flex items-center gap-1.5 font-display text-sm text-hex-300 hover:text-hex-200"
               >
-                Tumunu gor <FontAwesomeIcon icon={faArrowRight} className="h-3 w-3" />
+                Tümünü gör <FontAwesomeIcon icon={faArrowRight} className="h-3 w-3" />
               </Link>
             </div>
             <div className="mt-8 grid gap-5 sm:grid-cols-2">
@@ -167,14 +189,14 @@ export default async function HomePage() {
       )}
 
       {/* Latest posts */}
-      <section className="mx-auto max-w-6xl px-5 py-20">
+      <section className="mx-auto max-w-6xl px-5 py-16">
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <SectionHeading kicker="Bataklik gunlugu" title="Son kayitlar" />
+          <SectionHeading kicker="Bataklık günlüğü" title="Son Kayıtlar" />
           <Link
             href="/blog"
-            className="flex items-center gap-1.5 text-sm text-ooze-400 hover:text-ooze-300"
+            className="flex items-center gap-1.5 font-display text-sm text-vex-400 hover:text-vex-300"
           >
-            Blogu gor <FontAwesomeIcon icon={faArrowRight} className="h-3 w-3" />
+            Günlüğü gör <FontAwesomeIcon icon={faArrowRight} className="h-3 w-3" />
           </Link>
         </div>
         {latestPosts.length > 0 ? (
@@ -184,46 +206,46 @@ export default async function HomePage() {
             ))}
           </div>
         ) : (
-          <p className="mt-8 text-bone-500">
-            Henuz kayit dusulmedi, yakinda burada olacak.
+          <p className="mt-8 text-parchment-500">
+            Henüz kayıt düşülmedi, yakında burada olacak.
           </p>
         )}
       </section>
 
       {/* What we do */}
-      <section className="border-t border-bog-500/40 bg-bog-900/50">
-        <div className="mx-auto max-w-6xl px-5 py-20">
+      <section className="border-t border-bronze-700/40 bg-ink-900/60">
+        <div className="mx-auto max-w-6xl px-5 py-16">
           <SectionHeading
-            kicker="Atolyede neler oluyor"
-            title="Uc kolda calisiyoruz"
-            description="Trogworks, uc temel alanda urun cikariyor; hepsi ayni cati altinda, ayni ekiple ilerliyor."
+            kicker="Atölyede neler oluyor"
+            title="Üç Kolda Çalışıyoruz"
+            description="Trogworks, üç temel alanda ürün çıkarıyor; hepsi aynı çatı altında, aynı ekiple ilerliyor."
           />
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            <div className="border border-bog-500/50 bg-bog-800/40 p-6">
-              <FontAwesomeIcon icon={faCode} className="h-6 w-6 text-ooze-400" />
-              <h3 className="mt-4 font-display text-lg text-bone-100">
-                Yazilim Araclari
+            <div className="hud-panel p-6">
+              <FontAwesomeIcon icon={faCode} className="h-6 w-6 text-vex-400" />
+              <h3 className="mt-4 font-display text-lg text-parchment-100">
+                Yazılım Araçları
               </h3>
-              <p className="mt-2 text-sm text-bone-500">
-                Gunluk isleri kolaylastiran kucuk, odakli araclar ve
-                kütüphaneler gelistiriyoruz.
+              <p className="mt-2 text-sm text-parchment-500">
+                Günlük işleri kolaylaştıran küçük, odaklı araçlar ve
+                kütüphaneler geliştiriyoruz.
               </p>
             </div>
-            <div className="border border-bog-500/50 bg-bog-800/40 p-6">
-              <FontAwesomeIcon icon={faGamepad} className="h-6 w-6 text-rune-400" />
-              <h3 className="mt-4 font-display text-lg text-bone-100">Oyunlar</h3>
-              <p className="mt-2 text-sm text-bone-500">
-                Web tabanli ve masaustu oyunlar uzerinde calisiyor,
-                gelisimlerini acikca paylasiyoruz.
+            <div className="hud-panel p-6">
+              <FontAwesomeIcon icon={faGamepad} className="h-6 w-6 text-hex-400" />
+              <h3 className="mt-4 font-display text-lg text-parchment-100">Oyunlar</h3>
+              <p className="mt-2 text-sm text-parchment-500">
+                Web tabanlı ve masaüstü oyunlar üzerinde çalışıyor,
+                gelişimlerini açıkça paylaşıyoruz.
               </p>
             </div>
-            <div className="border border-bog-500/50 bg-bog-800/40 p-6">
-              <FontAwesomeIcon icon={faScroll} className="h-6 w-6 text-ember-400" />
-              <h3 className="mt-4 font-display text-lg text-bone-100">
-                Acik Gunlukler
+            <div className="hud-panel p-6">
+              <FontAwesomeIcon icon={faScroll} className="h-6 w-6 text-bronze-400" />
+              <h3 className="mt-4 font-display text-lg text-parchment-100">
+                Açık Günlükler
               </h3>
-              <p className="mt-2 text-sm text-bone-500">
-                Her onemli gelisme, karar ve surum blog uzerinden aninda
+              <p className="mt-2 text-sm text-parchment-500">
+                Her önemli gelişme, karar ve sürüm blog üzerinden anında
                 duyuruluyor.
               </p>
             </div>

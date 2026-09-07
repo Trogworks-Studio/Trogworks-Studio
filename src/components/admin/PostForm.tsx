@@ -129,17 +129,17 @@ export default function PostForm({ post }: { post?: Post }) {
 
       <div>
         <div className="flex items-center justify-between">
-          <label className="text-sm text-bone-300">Icerik (Markdown)</label>
+          <label className="text-sm text-parchment-300">Icerik (Markdown)</label>
           <button
             type="button"
             onClick={() => setShowPreview((v) => !v)}
-            className="text-xs text-ooze-400 hover:text-ooze-300"
+            className="text-xs text-vex-400 hover:text-vex-300"
           >
             {showPreview ? "Duzenlemeye don" : "Onizle"}
           </button>
         </div>
         {showPreview ? (
-          <div className="prose-trog mt-1.5 min-h-[16rem] rounded-sm border border-bog-500/60 bg-bog-800 p-4">
+          <div className="prose-trog mt-1.5 min-h-[16rem] rounded-sm border border-ink-500/60 bg-ink-800 p-4">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {content || "*Henuz icerik yok*"}
             </ReactMarkdown>
@@ -156,23 +156,23 @@ export default function PostForm({ post }: { post?: Post }) {
         )}
       </div>
 
-      <label className="flex items-center gap-2.5 text-sm text-bone-300">
+      <label className="flex items-center gap-2.5 text-sm text-parchment-300">
         <input
           type="checkbox"
           checked={published}
           onChange={(e) => setPublished(e.target.checked)}
-          className="h-4 w-4 accent-ooze-500"
+          className="h-4 w-4 accent-vex-500"
         />
         Yayinla
       </label>
 
-      {error && <p className="text-sm text-ember-300">{error}</p>}
+      {error && <p className="text-sm text-wound-400">{error}</p>}
 
       <div className="flex gap-3">
         <button
           type="submit"
           disabled={loading}
-          className="rounded-sm bg-ooze-600 px-5 py-2.5 text-sm font-medium text-bog-900 hover:bg-ooze-500 disabled:opacity-60"
+          className="rounded-sm bg-vex-600 px-5 py-2.5 text-sm font-medium text-ink-900 hover:bg-vex-500 disabled:opacity-60"
         >
           {loading ? "Kaydediliyor..." : isEdit ? "Guncelle" : "Olustur"}
         </button>
@@ -182,7 +182,7 @@ export default function PostForm({ post }: { post?: Post }) {
 }
 
 const inputClass =
-  "mt-1.5 w-full rounded-sm border border-bog-500/60 bg-bog-800 px-3 py-2.5 text-bone-200 focus:border-ooze-500";
+  "mt-1.5 w-full rounded-sm border border-ink-500/60 bg-ink-800 px-3 py-2.5 text-parchment-200 focus:border-vex-500";
 
 function Field({
   label,
@@ -193,7 +193,7 @@ function Field({
 }) {
   return (
     <div>
-      <label className="text-sm text-bone-300">{label}</label>
+      <label className="text-sm text-parchment-300">{label}</label>
       {children}
     </div>
   );

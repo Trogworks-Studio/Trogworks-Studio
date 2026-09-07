@@ -20,13 +20,13 @@ export default async function BlogPage() {
   return (
     <div className="mx-auto max-w-6xl px-5 py-16">
       <SectionHeading
-        kicker="Bataklik gunlugu"
-        title="Blog"
-        description="Duyurular, gelisme guncellemeleri ve atolyeden notlar."
+        kicker="Bataklık günlüğü"
+        title="Günlük"
+        description="Duyurular, gelişme güncellemeleri ve atölyeden notlar."
       />
 
       {posts.length === 0 ? (
-        <p className="mt-10 text-bone-500">Henuz bir kayit dusulmedi.</p>
+        <p className="mt-10 text-parchment-500">Henüz bir kayıt düşülmedi.</p>
       ) : (
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (

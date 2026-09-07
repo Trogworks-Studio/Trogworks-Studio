@@ -12,14 +12,16 @@ export default function SectionHeading({
   return (
     <div className={align === "center" ? "text-center" : "text-left"}>
       {kicker && (
-        <p className="font-display text-sm italic text-rune-300">{kicker}</p>
+        <p className="rune-divider justify-start font-display text-xs uppercase tracking-[0.3em] text-hex-300 before:hidden after:hidden">
+          {kicker}
+        </p>
       )}
-      <h2 className="mt-1 font-display text-3xl text-bone-100 sm:text-4xl">
+      <h2 className="mt-2 font-display text-3xl text-parchment-100 sm:text-4xl">
         {title}
       </h2>
       {description && (
         <p
-          className={`mt-3 max-w-2xl text-bone-500 ${
+          className={`mt-3 max-w-2xl text-parchment-500 ${
             align === "center" ? "mx-auto" : ""
           }`}
         >

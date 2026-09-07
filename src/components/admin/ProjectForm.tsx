@@ -169,7 +169,7 @@ export default function ProjectForm({ project }: { project?: Project }) {
           max={100}
           value={progress}
           onChange={(e) => setProgress(Number(e.target.value))}
-          className="w-full accent-ooze-500"
+          className="w-full accent-vex-500"
         />
       </Field>
 
@@ -238,23 +238,23 @@ export default function ProjectForm({ project }: { project?: Project }) {
         </Field>
       </div>
 
-      <label className="flex items-center gap-2.5 text-sm text-bone-300">
+      <label className="flex items-center gap-2.5 text-sm text-parchment-300">
         <input
           type="checkbox"
           checked={featured}
           onChange={(e) => setFeatured(e.target.checked)}
-          className="h-4 w-4 accent-ooze-500"
+          className="h-4 w-4 accent-vex-500"
         />
         Ana sayfada one cikar
       </label>
 
-      {error && <p className="text-sm text-ember-300">{error}</p>}
+      {error && <p className="text-sm text-wound-400">{error}</p>}
 
       <div className="flex gap-3">
         <button
           type="submit"
           disabled={loading}
-          className="rounded-sm bg-ooze-600 px-5 py-2.5 text-sm font-medium text-bog-900 hover:bg-ooze-500 disabled:opacity-60"
+          className="rounded-sm bg-vex-600 px-5 py-2.5 text-sm font-medium text-ink-900 hover:bg-vex-500 disabled:opacity-60"
         >
           {loading ? "Kaydediliyor..." : isEdit ? "Guncelle" : "Olustur"}
         </button>
@@ -264,7 +264,7 @@ export default function ProjectForm({ project }: { project?: Project }) {
 }
 
 const inputClass =
-  "mt-1.5 w-full rounded-sm border border-bog-500/60 bg-bog-800 px-3 py-2.5 text-bone-200 focus:border-ooze-500";
+  "mt-1.5 w-full rounded-sm border border-ink-500/60 bg-ink-800 px-3 py-2.5 text-parchment-200 focus:border-vex-500";
 
 function Field({
   label,
@@ -275,7 +275,7 @@ function Field({
 }) {
   return (
     <div>
-      <label className="text-sm text-bone-300">{label}</label>
+      <label className="text-sm text-parchment-300">{label}</label>
       {children}
     </div>
   );

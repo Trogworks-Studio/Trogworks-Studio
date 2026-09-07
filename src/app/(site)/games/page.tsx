@@ -19,13 +19,13 @@ export default async function GamesPage() {
     <div className="mx-auto max-w-6xl px-5 py-16">
       <SectionHeading
         kicker="Kazanda kaynayanlar"
-        title="Oyunlar"
-        description="Gelistirdigimiz butun oyunlar; kimi web'de hemen oynanabilir, kimi henuz kazanda kaynaniyor."
+        title="Arena"
+        description="Geliştirdiğimiz bütün oyunlar; kimi web'de hemen oynanabilir, kimi henüz kazanda kaynıyor."
       />
 
       {games.length === 0 ? (
-        <p className="mt-10 text-bone-500">
-          Henuz yayinlanmis bir oyun yok, cok yakinda burada olacak.
+        <p className="mt-10 text-parchment-500">
+          Henüz yayınlanmış bir oyun yok, çok yakında burada olacak.
         </p>
       ) : (
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

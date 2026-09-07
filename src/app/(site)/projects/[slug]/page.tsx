@@ -74,14 +74,14 @@ export default async function ProjectDetailPage({
       <div className="flex flex-wrap items-center gap-3">
         <StatusBadge status={project.status} />
         {project.version && (
-          <span className="text-xs text-bone-500">v{project.version}</span>
+          <span className="text-xs text-parchment-500">v{project.version}</span>
         )}
       </div>
 
-      <h1 className="mt-4 font-display text-4xl text-bone-100 sm:text-5xl">
+      <h1 className="mt-4 font-display text-4xl text-parchment-100 sm:text-5xl">
         {project.title}
       </h1>
-      <p className="mt-3 max-w-2xl text-lg text-bone-400">{project.tagline}</p>
+      <p className="mt-3 max-w-2xl text-lg text-parchment-400">{project.tagline}</p>
 
       <div className="mt-6 flex flex-wrap gap-3">
         {project.websiteUrl && (
@@ -89,7 +89,7 @@ export default async function ProjectDetailPage({
             href={project.websiteUrl}
             target="_blank"
             rel="noreferrer noopener"
-            className="flex items-center gap-2 rounded-sm bg-ooze-600 px-4 py-2.5 text-sm font-medium text-bog-900 transition-colors hover:bg-ooze-500"
+            className="btn-hud flex items-center gap-2 bg-vex-600 px-4 py-2.5 text-sm font-display text-ink-950"
           >
             Siteye Git
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="h-3.5 w-3.5" />
@@ -98,10 +98,10 @@ export default async function ProjectDetailPage({
         {project.downloadUrl && (
           <a
             href={project.downloadUrl}
-            className="flex items-center gap-2 rounded-sm border border-ember-400/50 px-4 py-2.5 text-sm font-medium text-ember-200 transition-colors hover:bg-ember-900/20"
+            className="btn-hud flex items-center gap-2 border border-bronze-400/50 bg-ink-800 px-4 py-2.5 text-sm font-display text-bronze-300"
           >
             <FontAwesomeIcon icon={faDownload} className="h-3.5 w-3.5" />
-            Indir
+            İndir
           </a>
         )}
         {project.sourceUrl && (
@@ -109,7 +109,7 @@ export default async function ProjectDetailPage({
             href={project.sourceUrl}
             target="_blank"
             rel="noreferrer noopener"
-            className="flex items-center gap-2 rounded-sm border border-bog-400/50 px-4 py-2.5 text-sm font-medium text-bone-300 transition-colors hover:bg-bog-700"
+            className="btn-hud flex items-center gap-2 border border-ink-500/60 bg-ink-800 px-4 py-2.5 text-sm font-display text-parchment-300"
           >
             <FontAwesomeIcon icon={faGithub} className="h-3.5 w-3.5" />
             Kaynak Kod
@@ -118,7 +118,7 @@ export default async function ProjectDetailPage({
       </div>
 
       {project.coverImage && (
-        <div className="relative mt-10 h-72 w-full overflow-hidden rounded-sm sm:h-96">
+        <div className="hud-panel relative mt-10 h-72 w-full overflow-hidden sm:h-96">
           <Image
             src={project.coverImage}
             alt={project.title}
@@ -131,20 +131,20 @@ export default async function ProjectDetailPage({
 
       <div className="mt-10 grid gap-10 md:grid-cols-[1fr_260px]">
         <div>
-          <h2 className="font-display text-xl text-bone-100">Proje hakkinda</h2>
-          <p className="mt-3 whitespace-pre-line leading-relaxed text-bone-400">
+          <h2 className="font-display text-xl text-parchment-100">Görev hakkında</h2>
+          <p className="mt-3 whitespace-pre-line leading-relaxed text-parchment-400">
             {project.description}
           </p>
 
           {project.features.length > 0 && (
             <div className="mt-8">
-              <h2 className="font-display text-xl text-bone-100">Ozellikler</h2>
+              <h2 className="font-display text-xl text-parchment-100">Özellikler</h2>
               <ul className="mt-3 space-y-2">
                 {project.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2.5 text-bone-400">
+                  <li key={feature} className="flex items-start gap-2.5 text-parchment-400">
                     <FontAwesomeIcon
                       icon={faCheck}
-                      className="mt-1 h-3.5 w-3.5 shrink-0 text-ooze-400"
+                      className="mt-1 h-3.5 w-3.5 shrink-0 text-vex-400"
                     />
                     {feature}
                   </li>
@@ -155,16 +155,13 @@ export default async function ProjectDetailPage({
 
           {project.gallery.length > 0 && (
             <div className="mt-8">
-              <h2 className="font-display text-xl text-bone-100">Galeri</h2>
+              <h2 className="font-display text-xl text-parchment-100">Galeri</h2>
               <div className="mt-3 grid grid-cols-2 gap-3">
                 {project.gallery.map((img, i) => (
-                  <div
-                    key={img + i}
-                    className="relative h-40 overflow-hidden rounded-sm"
-                  >
+                  <div key={img + i} className="hud-panel relative h-40 overflow-hidden">
                     <Image
                       src={img}
-                      alt={`${project.title} gorsel ${i + 1}`}
+                      alt={`${project.title} görsel ${i + 1}`}
                       fill
                       className="object-cover"
                     />
@@ -176,20 +173,20 @@ export default async function ProjectDetailPage({
 
           {project.updates.length > 0 && (
             <div className="mt-10">
-              <h2 className="font-display text-xl text-bone-100">
-                Gelisme kayitlari
+              <h2 className="font-display text-xl text-parchment-100">
+                Gelişme kayıtları
               </h2>
-              <ol className="mt-4 space-y-6 border-l border-bog-500/50 pl-5">
+              <ol className="mt-4 space-y-6 border-l border-bronze-700/50 pl-5">
                 {project.updates.map((update) => (
                   <li key={update.id} className="relative">
-                    <span className="absolute -left-[1.36rem] top-1.5 h-2 w-2 rounded-full bg-ooze-500" />
-                    <p className="text-xs text-bone-500">
+                    <span className="absolute -left-[1.36rem] top-1.5 h-2 w-2 rounded-full bg-vex-500" />
+                    <p className="text-xs text-parchment-500">
                       {formatDate(update.createdAt)}
                     </p>
-                    <h3 className="mt-1 font-display text-base text-bone-200">
+                    <h3 className="mt-1 font-display text-base text-parchment-200">
                       {update.title}
                     </h3>
-                    <p className="mt-1 whitespace-pre-line text-sm text-bone-500">
+                    <p className="mt-1 whitespace-pre-line text-sm text-parchment-500">
                       {update.body}
                     </p>
                   </li>
@@ -200,20 +197,20 @@ export default async function ProjectDetailPage({
         </div>
 
         <aside className="space-y-6">
-          <div className="border border-bog-500/50 bg-bog-800/40 p-5">
+          <div className="hud-panel p-5">
             <ProgressBar value={project.progress} />
           </div>
           {project.techStack.length > 0 && (
-            <div className="border border-bog-500/50 bg-bog-800/40 p-5">
-              <h3 className="flex items-center gap-2 font-display text-sm text-bone-200">
-                <FontAwesomeIcon icon={faCode} className="h-3.5 w-3.5 text-ooze-400" />
-                Teknoloji Yigin
+            <div className="hud-panel p-5">
+              <h3 className="flex items-center gap-2 font-display text-xs uppercase tracking-wider text-bronze-400">
+                <FontAwesomeIcon icon={faCode} className="h-3.5 w-3.5 text-vex-400" />
+                Teknoloji Yığını
               </h3>
               <ul className="mt-3 flex flex-wrap gap-1.5">
                 {project.techStack.map((tech) => (
                   <li
                     key={tech}
-                    className="rounded-sm border border-bog-500/50 px-2 py-0.5 text-xs text-bone-400"
+                    className="hud-tag border border-ink-500/60 px-2 py-0.5 text-[10px] uppercase tracking-wide text-parchment-400"
                   >
                     {tech}
                   </li>
@@ -223,9 +220,9 @@ export default async function ProjectDetailPage({
           )}
           <Link
             href="/projects"
-            className="block text-center text-sm text-bone-500 hover:text-ooze-400"
+            className="block text-center text-sm text-parchment-500 hover:text-vex-400"
           >
-            ← Tum projelere don
+            ← Tüm görevlere dön
           </Link>
         </aside>
       </div>

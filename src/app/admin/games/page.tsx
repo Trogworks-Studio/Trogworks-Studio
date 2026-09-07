@@ -11,10 +11,10 @@ export default async function AdminGamesPage() {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="font-display text-2xl text-bone-100">Oyunlar</h1>
+        <h1 className="font-display text-2xl text-parchment-100">Oyunlar</h1>
         <Link
           href="/admin/games/new"
-          className="flex items-center gap-2 rounded-sm bg-rune-600 px-4 py-2 text-sm font-medium text-bone-100 hover:bg-rune-500"
+          className="flex items-center gap-2 rounded-sm bg-hex-600 px-4 py-2 text-sm font-medium text-parchment-100 hover:bg-hex-500"
         >
           <FontAwesomeIcon icon={faPlus} className="h-3.5 w-3.5" />
           Yeni Oyun
@@ -22,9 +22,9 @@ export default async function AdminGamesPage() {
       </div>
 
       {games.length === 0 ? (
-        <p className="mt-8 text-bone-500">Henuz oyun eklenmedi.</p>
+        <p className="mt-8 text-parchment-500">Henuz oyun eklenmedi.</p>
       ) : (
-        <div className="mt-6 divide-y divide-bog-500/40 border border-bog-500/40">
+        <div className="mt-6 divide-y divide-ink-500/40 border border-ink-500/40">
           {games.map((game) => (
             <div
               key={game.id}
@@ -35,24 +35,24 @@ export default async function AdminGamesPage() {
                   {game.featured && (
                     <FontAwesomeIcon
                       icon={faStar}
-                      className="h-3.5 w-3.5 text-ember-300"
+                      className="h-3.5 w-3.5 text-bronze-300"
                       title="One cikan"
                     />
                   )}
-                  <p className="truncate font-display text-base text-bone-100">
+                  <p className="truncate font-display text-base text-parchment-100">
                     {game.title}
                   </p>
                 </div>
-                <p className="mt-0.5 truncate text-xs text-bone-500">
+                <p className="mt-0.5 truncate text-xs text-parchment-500">
                   /games/{game.slug}
                 </p>
               </div>
               <div className="flex items-center gap-3">
                 <StatusBadge status={game.status} />
-                <span className="text-xs text-bone-500">%{game.progress}</span>
+                <span className="text-xs text-parchment-500">%{game.progress}</span>
                 <Link
                   href={`/admin/games/${game.id}/edit`}
-                  className="flex items-center gap-1.5 rounded-sm border border-bog-400/50 px-2.5 py-1.5 text-xs text-bone-300 hover:bg-bog-700"
+                  className="flex items-center gap-1.5 rounded-sm border border-ink-400/50 px-2.5 py-1.5 text-xs text-parchment-300 hover:bg-ink-700"
                 >
                   <FontAwesomeIcon icon={faPen} className="h-3 w-3" />
                   Duzenle

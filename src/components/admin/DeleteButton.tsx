@@ -33,7 +33,7 @@ export default function DeleteButton({
     <button
       onClick={handleDelete}
       disabled={loading}
-      className="flex items-center gap-1.5 rounded-sm border border-ember-500/40 px-2.5 py-1.5 text-xs text-ember-300 transition-colors hover:bg-ember-900/20 disabled:opacity-50"
+      className="flex items-center gap-1.5 rounded-sm border border-wound-500/40 px-2.5 py-1.5 text-xs text-wound-400 transition-colors hover:bg-wound-600/20 disabled:opacity-50"
     >
       <FontAwesomeIcon icon={faTrash} className="h-3 w-3" />
       Sil

@@ -27,41 +27,41 @@ export default function ContactForm() {
         body: JSON.stringify(form),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Mesaj gonderilemedi");
+      if (!res.ok) throw new Error(data.error || "Mesaj gönderilemedi");
       setStatus("done");
       setForm({ name: "", email: "", subject: "", message: "" });
     } catch (err) {
       setStatus("error");
-      setError(err instanceof Error ? err.message : "Mesaj gonderilemedi");
+      setError(err instanceof Error ? err.message : "Mesaj gönderilemedi");
     }
   }
 
   if (status === "done") {
     return (
-      <div className="flex items-center gap-3 border border-ooze-600/40 bg-ooze-900/20 p-6 text-ooze-300">
+      <div className="hud-panel flex items-center gap-3 p-6 text-vex-300">
         <FontAwesomeIcon icon={faCheck} className="h-5 w-5" />
-        <p>Mesajin bataklik postasina dustu. En kisa surede doneriz.</p>
+        <p>Mesajın bataklık postasına düştü. En kısa sürede döneriz.</p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} className="hud-panel space-y-5 p-6">
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label htmlFor="name" className="text-sm text-bone-300">
-            Adin
+          <label htmlFor="name" className="font-display text-xs uppercase tracking-wider text-bronze-400">
+            Adın
           </label>
           <input
             id="name"
             required
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
-            className="mt-1.5 w-full rounded-sm border border-bog-500/60 bg-bog-800 px-3 py-2.5 text-bone-200 focus:border-ooze-500"
+            className="mt-1.5 w-full border border-ink-500/60 bg-ink-800 px-3 py-2.5 text-parchment-200 focus:border-vex-500 focus:outline-none"
           />
         </div>
         <div>
-          <label htmlFor="email" className="text-sm text-bone-300">
+          <label htmlFor="email" className="font-display text-xs uppercase tracking-wider text-bronze-400">
             E-posta
           </label>
           <input
@@ -70,12 +70,12 @@ export default function ContactForm() {
             required
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className="mt-1.5 w-full rounded-sm border border-bog-500/60 bg-bog-800 px-3 py-2.5 text-bone-200 focus:border-ooze-500"
+            className="mt-1.5 w-full border border-ink-500/60 bg-ink-800 px-3 py-2.5 text-parchment-200 focus:border-vex-500 focus:outline-none"
           />
         </div>
       </div>
       <div>
-        <label htmlFor="subject" className="text-sm text-bone-300">
+        <label htmlFor="subject" className="font-display text-xs uppercase tracking-wider text-bronze-400">
           Konu
         </label>
         <input
@@ -83,12 +83,12 @@ export default function ContactForm() {
           required
           value={form.subject}
           onChange={(e) => setForm({ ...form, subject: e.target.value })}
-          className="mt-1.5 w-full rounded-sm border border-bog-500/60 bg-bog-800 px-3 py-2.5 text-bone-200 focus:border-ooze-500"
+          className="mt-1.5 w-full border border-ink-500/60 bg-ink-800 px-3 py-2.5 text-parchment-200 focus:border-vex-500 focus:outline-none"
         />
       </div>
       <div>
-        <label htmlFor="message" className="text-sm text-bone-300">
-          Mesajin
+        <label htmlFor="message" className="font-display text-xs uppercase tracking-wider text-bronze-400">
+          Mesajın
         </label>
         <textarea
           id="message"
@@ -96,21 +96,21 @@ export default function ContactForm() {
           rows={6}
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
-          className="mt-1.5 w-full resize-none rounded-sm border border-bog-500/60 bg-bog-800 px-3 py-2.5 text-bone-200 focus:border-ooze-500"
+          className="mt-1.5 w-full resize-none border border-ink-500/60 bg-ink-800 px-3 py-2.5 text-parchment-200 focus:border-vex-500 focus:outline-none"
         />
       </div>
 
       {status === "error" && (
-        <p className="text-sm text-ember-300">{error}</p>
+        <p className="text-sm text-wound-400">{error}</p>
       )}
 
       <button
         type="submit"
         disabled={status === "loading"}
-        className="flex items-center gap-2 rounded-sm bg-ooze-600 px-5 py-2.5 text-sm font-medium text-bog-900 transition-colors hover:bg-ooze-500 disabled:opacity-60"
+        className="btn-hud flex items-center gap-2 bg-vex-600 px-5 py-2.5 text-sm font-display text-ink-950 disabled:opacity-60"
       >
         <FontAwesomeIcon icon={faPaperPlane} className="h-3.5 w-3.5" />
-        {status === "loading" ? "Gonderiliyor..." : "Mesaji Gonder"}
+        {status === "loading" ? "Gönderiliyor..." : "Mesajı Gönder"}
       </button>
     </form>
   );

@@ -181,7 +181,7 @@ export default function GameForm({ game }: { game?: Game }) {
           max={100}
           value={progress}
           onChange={(e) => setProgress(Number(e.target.value))}
-          className="w-full accent-rune-500"
+          className="w-full accent-hex-500"
         />
       </Field>
 
@@ -192,8 +192,8 @@ export default function GameForm({ game }: { game?: Game }) {
               key={platform}
               className={`cursor-pointer rounded-sm border px-3 py-1.5 text-xs transition-colors ${
                 platforms.includes(platform)
-                  ? "border-rune-500 bg-rune-900/40 text-rune-200"
-                  : "border-bog-500/60 text-bone-500 hover:border-bog-400"
+                  ? "border-hex-500 bg-hex-900/40 text-hex-200"
+                  : "border-ink-500/60 text-parchment-500 hover:border-ink-400"
               }`}
             >
               <input
@@ -263,23 +263,23 @@ export default function GameForm({ game }: { game?: Game }) {
         </Field>
       </div>
 
-      <label className="flex items-center gap-2.5 text-sm text-bone-300">
+      <label className="flex items-center gap-2.5 text-sm text-parchment-300">
         <input
           type="checkbox"
           checked={featured}
           onChange={(e) => setFeatured(e.target.checked)}
-          className="h-4 w-4 accent-rune-500"
+          className="h-4 w-4 accent-hex-500"
         />
         Ana sayfada one cikar
       </label>
 
-      {error && <p className="text-sm text-ember-300">{error}</p>}
+      {error && <p className="text-sm text-wound-400">{error}</p>}
 
       <div className="flex gap-3">
         <button
           type="submit"
           disabled={loading}
-          className="rounded-sm bg-rune-600 px-5 py-2.5 text-sm font-medium text-bone-100 hover:bg-rune-500 disabled:opacity-60"
+          className="rounded-sm bg-hex-600 px-5 py-2.5 text-sm font-medium text-parchment-100 hover:bg-hex-500 disabled:opacity-60"
         >
           {loading ? "Kaydediliyor..." : isEdit ? "Guncelle" : "Olustur"}
         </button>
@@ -289,7 +289,7 @@ export default function GameForm({ game }: { game?: Game }) {
 }
 
 const inputClass =
-  "mt-1.5 w-full rounded-sm border border-bog-500/60 bg-bog-800 px-3 py-2.5 text-bone-200 focus:border-rune-500";
+  "mt-1.5 w-full rounded-sm border border-ink-500/60 bg-ink-800 px-3 py-2.5 text-parchment-200 focus:border-hex-500";
 
 function Field({
   label,
@@ -300,7 +300,7 @@ function Field({
 }) {
   return (
     <div>
-      <label className="text-sm text-bone-300">{label}</label>
+      <label className="text-sm text-parchment-300">{label}</label>
       {children}
     </div>
   );

@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Cinzel, Inter } from "next/font/google";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "@/lib/fontawesome";
 import "./globals.css";
 
-const fraunces = Fraunces({
+const cinzel = Cinzel({
   subsets: ["latin"],
-  variable: "--font-fraunces",
-  weight: ["500", "600", "700"],
-  style: ["normal", "italic"],
+  variable: "--font-cinzel",
+  weight: ["500", "600", "700", "900"],
   display: "swap",
 });
 
@@ -45,17 +44,17 @@ export const metadata: Metadata = {
     description:
       "Yazilim araclari, oyunlar ve gelisme duyurularinin yayinlandigi atolye.",
     url: siteUrl,
-    images: [{ url: "/og-default.png", width: 1200, height: 630 }],
+    images: [{ url: "/trog/logo.webp", width: 1200, height: 1200 }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteName} — Bataklikta Dogan Yazilimlar`,
     description:
       "Yazilim araclari, oyunlar ve gelisme duyurularinin yayinlandigi atolye.",
-    images: ["/og-default.png"],
+    images: ["/trog/logo.webp"],
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/trog/logo.webp",
   },
   robots: {
     index: true,
@@ -73,13 +72,14 @@ export default function RootLayout({
     "@type": "Organization",
     name: siteName,
     url: siteUrl,
+    logo: `${siteUrl}/trog/logo.webp`,
     description:
       "Yazilim araclari, oyunlar ve gelisme duyurularinin yayinlandigi bagimsiz yazilim atolyesi.",
     sameAs: ["https://github.com", "https://discord.com", "https://x.com"],
   };
 
   return (
-    <html lang="tr" className={`${fraunces.variable} ${inter.variable}`}>
+    <html lang="tr" className={`${cinzel.variable} ${inter.variable}`}>
       <body className="min-h-screen font-body antialiased">
         <script
           type="application/ld+json"

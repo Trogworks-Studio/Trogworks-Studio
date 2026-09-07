@@ -12,7 +12,7 @@ export default async function EditGamePage({
 
   return (
     <div>
-      <h1 className="font-display text-2xl text-bone-100">
+      <h1 className="font-display text-2xl text-parchment-100">
         Oyunu Duzenle: {game.title}
       </h1>
       <div className="mt-8 max-w-2xl">

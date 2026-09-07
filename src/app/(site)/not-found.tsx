@@ -1,22 +1,28 @@
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSkullCrossbones } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
 
 export default function NotFound() {
   return (
-    <div className="mx-auto flex min-h-[60vh] max-w-lg flex-col items-center justify-center px-5 text-center">
-      <FontAwesomeIcon icon={faSkullCrossbones} className="h-10 w-10 text-ember-400" />
-      <h1 className="mt-6 font-display text-3xl text-bone-100">
-        Bu iz bataklikta kayboldu
+    <div className="mx-auto flex min-h-[65vh] max-w-lg flex-col items-center justify-center px-5 text-center">
+      <div className="relative h-48 w-48">
+        <Image
+          src="/trog/shocked.webp"
+          alt="Şaşkın Trog maskotu"
+          fill
+          className="object-contain drop-shadow-[0_16px_20px_rgba(0,0,0,0.5)]"
+        />
+      </div>
+      <h1 className="mt-6 font-display text-3xl text-parchment-100">
+        Bu iz bataklıkta kayboldu
       </h1>
-      <p className="mt-3 text-bone-500">
-        Aradigin sayfa tasinmis, silinmis ya da hic var olmamis olabilir.
+      <p className="mt-3 text-parchment-500">
+        Aradığın sayfa taşınmış, silinmiş ya da hiç var olmamış olabilir.
       </p>
       <Link
         href="/"
-        className="mt-6 rounded-sm bg-ooze-600 px-5 py-2.5 text-sm font-medium text-bog-900 hover:bg-ooze-500"
+        className="btn-hud mt-6 bg-vex-600 px-5 py-2.5 text-sm font-display text-ink-950"
       >
-        Ana Sayfaya Don
+        Ana Sayfaya Dön
       </Link>
     </div>
   );

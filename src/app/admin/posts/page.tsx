@@ -11,10 +11,10 @@ export default async function AdminPostsPage() {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="font-display text-2xl text-bone-100">Blog Yazilari</h1>
+        <h1 className="font-display text-2xl text-parchment-100">Blog Yazilari</h1>
         <Link
           href="/admin/posts/new"
-          className="flex items-center gap-2 rounded-sm border border-bog-400/50 px-4 py-2 text-sm font-medium text-bone-200 hover:bg-bog-700"
+          className="flex items-center gap-2 rounded-sm border border-ink-400/50 px-4 py-2 text-sm font-medium text-parchment-200 hover:bg-ink-700"
         >
           <FontAwesomeIcon icon={faPlus} className="h-3.5 w-3.5" />
           Yeni Yazi
@@ -22,26 +22,26 @@ export default async function AdminPostsPage() {
       </div>
 
       {posts.length === 0 ? (
-        <p className="mt-8 text-bone-500">Henuz yazi eklenmedi.</p>
+        <p className="mt-8 text-parchment-500">Henuz yazi eklenmedi.</p>
       ) : (
-        <div className="mt-6 divide-y divide-bog-500/40 border border-bog-500/40">
+        <div className="mt-6 divide-y divide-ink-500/40 border border-ink-500/40">
           {posts.map((post) => (
             <div
               key={post.id}
               className="flex flex-wrap items-center justify-between gap-3 p-4"
             >
               <div className="min-w-0">
-                <p className="truncate font-display text-base text-bone-100">
+                <p className="truncate font-display text-base text-parchment-100">
                   {post.title}
                 </p>
-                <p className="mt-0.5 truncate text-xs text-bone-500">
+                <p className="mt-0.5 truncate text-xs text-parchment-500">
                   /blog/{post.slug} · {formatDate(post.createdAt)}
                 </p>
               </div>
               <div className="flex items-center gap-3">
                 <span
                   className={`flex items-center gap-1.5 text-xs ${
-                    post.published ? "text-ooze-400" : "text-bone-500"
+                    post.published ? "text-vex-400" : "text-parchment-500"
                   }`}
                 >
                   <FontAwesomeIcon icon={faCircle} className="h-2 w-2" />
@@ -49,7 +49,7 @@ export default async function AdminPostsPage() {
                 </span>
                 <Link
                   href={`/admin/posts/${post.id}/edit`}
-                  className="flex items-center gap-1.5 rounded-sm border border-bog-400/50 px-2.5 py-1.5 text-xs text-bone-300 hover:bg-bog-700"
+                  className="flex items-center gap-1.5 rounded-sm border border-ink-400/50 px-2.5 py-1.5 text-xs text-parchment-300 hover:bg-ink-700"
                 >
                   <FontAwesomeIcon icon={faPen} className="h-3 w-3" />
                   Duzenle

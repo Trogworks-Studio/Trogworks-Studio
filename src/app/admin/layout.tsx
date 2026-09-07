@@ -15,11 +15,11 @@ export default function AdminLayout({
   return (
     <AuthProvider>
       {isLogin ? (
-        <div className="flex min-h-screen items-center justify-center bg-bog-900 px-5">
+        <div className="flex min-h-screen items-center justify-center bg-ink-900 px-5">
           {children}
         </div>
       ) : (
-        <div className="flex min-h-screen flex-col bg-bog-900 md:flex-row">
+        <div className="flex min-h-screen flex-col bg-ink-900 md:flex-row">
           <AdminSidebar />
           <div className="flex-1 overflow-y-auto">
             <div className="mx-auto max-w-5xl px-5 py-10">{children}</div>

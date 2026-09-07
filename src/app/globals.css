@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --font-fraunces: "Fraunces", serif;
+  --font-cinzel: "Cinzel", serif;
   --font-inter: "Inter", sans-serif;
 }
 
 * {
-  scrollbar-color: #7cb518 #12160f;
+  scrollbar-color: #7BC925 #0C0F0D;
 }
 
 html {
@@ -16,48 +16,92 @@ html {
 }
 
 body {
-  background-color: #0e1210;
-  color: #e8e4d3;
+  background-color: #0C0F0D;
+  color: #E8DFC4;
   background-image:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124, 181, 24, 0.08), transparent),
-    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(139, 95, 191, 0.07), transparent);
+    linear-gradient(rgba(155,226,60,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(155,226,60,0.04) 1px, transparent 1px),
+    radial-gradient(ellipse 70% 45% at 50% -5%, rgba(139,82,214,0.10), transparent),
+    radial-gradient(ellipse 55% 40% at 100% 15%, rgba(123,201,37,0.08), transparent);
+  background-size: 32px 32px, 32px 32px, auto, auto;
 }
 
-/* Yirtik parsomen kenar - kartlar icin */
-.torn-top {
+/* ===== HUD PANEL: notched-corner game dialog box ===== */
+.hud-panel {
+  position: relative;
+  background: linear-gradient(180deg, #171F21 0%, #12181A 100%);
+  border: 1px solid rgba(201,161,92,0.35);
+  box-shadow: 0 0 0 4px rgba(7,9,10,0.9), 0 8px 24px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.06);
   clip-path: polygon(
-    0% 3%, 3% 0%, 9% 2%, 16% 0%, 24% 2%, 31% 0%, 39% 1%, 47% 0%,
-    55% 2%, 63% 0%, 71% 1%, 79% 0%, 87% 2%, 94% 0%, 100% 2%, 100% 100%, 0% 100%
+    0 12px, 12px 0, calc(100% - 12px) 0, 100% 12px,
+    100% calc(100% - 12px), calc(100% - 12px) 100%,
+    12px 100%, 0 calc(100% - 12px)
   );
 }
 
-.torn-bottom {
-  clip-path: polygon(
-    0% 0%, 100% 0%, 100% 97%, 94% 100%, 87% 98%, 79% 100%, 71% 99%, 63% 100%,
-    55% 98%, 47% 100%, 39% 99%, 31% 100%, 24% 98%, 16% 100%, 9% 98%, 3% 100%, 0% 97%
-  );
-}
-
-.torn-card {
-  clip-path: polygon(
-    0% 2%, 3% 0%, 9% 1%, 16% 0%, 24% 1%, 31% 0%, 39% 2%, 47% 0%,
-    55% 1%, 63% 0%, 71% 2%, 79% 0%, 87% 1%, 94% 0%, 100% 2%,
-    100% 98%, 97% 100%, 91% 99%, 84% 100%, 76% 99%, 68% 100%,
-    60% 98%, 52% 100%, 44% 99%, 36% 100%, 28% 98%, 20% 100%,
-    12% 99%, 5% 100%, 0% 98%
-  );
-}
-
-.bg-noise::before {
+.hud-panel::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: var(--noise-url);
-  opacity: 0.4;
   pointer-events: none;
+  border: 1px solid rgba(0,0,0,0.4);
+  clip-path: inherit;
 }
 
-/* Runik nokta ayirici */
+.hud-panel-hover {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.hud-panel-hover:hover {
+  border-color: rgba(184,242,106,0.55);
+  box-shadow: 0 0 0 4px rgba(7,9,10,0.9), 0 0 28px rgba(155,226,60,0.22), inset 0 1px 0 rgba(255,255,255,0.08);
+  transform: translateY(-2px);
+}
+
+/* Small notch corners for tags/badges */
+.hud-tag {
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+}
+
+/* ===== HUD BUTTON ===== */
+.btn-hud {
+  position: relative;
+  font-family: var(--font-display);
+  letter-spacing: 0.03em;
+  border: 1px solid rgba(201,161,92,0.5);
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+.btn-hud:hover {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
+}
+.btn-hud:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+/* ===== STAT / PROGRESS BAR (health / mana style) ===== */
+.stat-bar-track {
+  position: relative;
+  height: 14px;
+  background: #0A0D0D;
+  border: 1px solid rgba(201,161,92,0.4);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.7);
+  clip-path: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px);
+  overflow: hidden;
+}
+.stat-bar-fill {
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    #7BC925,
+    #9BE23C 8px,
+    #7BC925 16px
+  );
+  box-shadow: 0 0 10px rgba(155,226,60,0.5);
+  transition: width 0.4s ease;
+}
+
+/* ===== Rune divider ===== */
 .rune-divider {
   display: flex;
   align-items: center;
@@ -68,19 +112,19 @@ body {
   content: "";
   height: 1px;
   flex: 1;
-  background: linear-gradient(90deg, transparent, rgba(232, 228, 211, 0.25), transparent);
+  background: linear-gradient(90deg, transparent, rgba(201,161,92,0.4), transparent);
 }
 
-/* Markdown icerigi (blog gövde metni) */
+/* ===== Markdown blog content ===== */
 .prose-trog {
-  color: #d6cfb2;
+  color: #D4C69E;
   line-height: 1.75;
 }
 .prose-trog h1,
 .prose-trog h2,
 .prose-trog h3 {
-  font-family: var(--font-fraunces);
-  color: #e8e4d3;
+  font-family: var(--font-cinzel);
+  color: #F5EFDD;
   margin-top: 2em;
   margin-bottom: 0.6em;
 }
@@ -88,48 +132,60 @@ body {
 .prose-trog h2 { font-size: 1.5rem; }
 .prose-trog h3 { font-size: 1.2rem; }
 .prose-trog p { margin-bottom: 1.25em; }
-.prose-trog a { color: #a6d94d; text-decoration: underline; text-underline-offset: 3px; }
-.prose-trog strong { color: #f3f0e6; }
+.prose-trog a { color: #9BE23C; text-decoration: underline; text-underline-offset: 3px; }
+.prose-trog strong { color: #F5EFDD; }
 .prose-trog ul, .prose-trog ol { margin: 1em 0 1.25em 1.5em; }
 .prose-trog li { margin-bottom: 0.4em; }
 .prose-trog blockquote {
-  border-left: 3px solid #8b5fbf;
+  border-left: 3px solid #8F52D6;
   padding-left: 1rem;
-  color: #bfb587;
+  color: #B2A47C;
   font-style: italic;
   margin: 1.5em 0;
 }
 .prose-trog code {
-  background: rgba(124, 181, 24, 0.12);
-  color: #c4e687;
+  background: rgba(123,201,37,0.12);
+  color: #B8F26A;
   padding: 0.15em 0.4em;
   border-radius: 3px;
   font-size: 0.9em;
 }
 .prose-trog pre {
-  background: #0b0e09;
-  border: 1px solid rgba(124, 181, 24, 0.25);
+  background: #07090A;
+  border: 1px solid rgba(123,201,37,0.25);
   padding: 1rem;
   border-radius: 4px;
   overflow-x: auto;
   margin-bottom: 1.5em;
 }
-.prose-trog pre code {
-  background: none;
-  padding: 0;
+.prose-trog pre code { background: none; padding: 0; }
+.prose-trog img { border-radius: 2px; margin: 1.5em 0; }
+
+/* Speech bubble for mascot callouts */
+.speech-bubble {
+  position: relative;
+  background: #171F21;
+  border: 1px solid rgba(201,161,92,0.4);
+  border-radius: 4px;
 }
-.prose-trog img {
-  border-radius: 2px;
-  margin: 1.5em 0;
+.speech-bubble::after {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 24px;
+  width: 0;
+  height: 0;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  border-right: 9px solid #171F21;
 }
 
-/* Focus goruntusu - erisilebilirlik */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: 2px solid #7cb518;
+  outline: 2px solid #9BE23C;
   outline-offset: 2px;
 }
 

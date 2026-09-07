@@ -61,19 +61,19 @@ export default async function BlogPostPage({
       />
 
       {post.publishedAt && (
-        <p className="text-sm text-bone-500">{formatDate(post.publishedAt)}</p>
+        <p className="text-sm text-parchment-500">{formatDate(post.publishedAt)}</p>
       )}
-      <h1 className="mt-2 font-display text-3xl text-bone-100 sm:text-4xl">
+      <h1 className="mt-2 font-display text-3xl text-parchment-100 sm:text-4xl">
         {post.title}
       </h1>
-      <p className="mt-3 text-lg text-bone-400">{post.excerpt}</p>
+      <p className="mt-3 text-lg text-parchment-400">{post.excerpt}</p>
 
       {post.tags.length > 0 && (
         <ul className="mt-4 flex flex-wrap gap-1.5">
           {post.tags.map((tag) => (
             <li
               key={tag}
-              className="rounded-sm bg-rune-900/40 px-2 py-0.5 text-xs text-rune-300"
+              className="hud-tag bg-hex-500/10 px-2 py-0.5 text-[10px] uppercase tracking-wide text-hex-300"
             >
               #{tag}
             </li>
@@ -82,7 +82,7 @@ export default async function BlogPostPage({
       )}
 
       {post.coverImage && (
-        <div className="relative mt-8 h-72 w-full overflow-hidden rounded-sm sm:h-96">
+        <div className="hud-panel relative mt-8 h-72 w-full overflow-hidden sm:h-96">
           <Image
             src={post.coverImage}
             alt={post.title}
@@ -99,12 +99,22 @@ export default async function BlogPostPage({
         </ReactMarkdown>
       </div>
 
-      <Link
-        href="/blog"
-        className="mt-14 inline-block text-sm text-bone-500 hover:text-ooze-400"
-      >
-        ← Tum kayitlara don
-      </Link>
+      <div className="mt-14 flex items-center gap-4">
+        <div className="relative h-16 w-16 shrink-0">
+          <Image
+            src="/trog/couch-laptop.webp"
+            alt="Rahat oturan Trog maskotu"
+            fill
+            className="object-contain"
+          />
+        </div>
+        <Link
+          href="/blog"
+          className="text-sm text-parchment-500 hover:text-vex-400"
+        >
+          ← Tüm kayıtlara dön
+        </Link>
+      </div>
     </article>
   );
 }
