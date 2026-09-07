@@ -1,0 +1,146 @@
+// Trogworks Studio - Veritabani semasi
+// Saglayici: PostgreSQL (Supabase / Neon / kendi sunucun)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+model User {
+  id            String   @id @default(cuid())
+  name          String
+  email         String   @unique
+  passwordHash  String
+  role          Role     @default(ADMIN)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+enum ReleaseStatus {
+  PLANLANIYOR
+  GELISTIRILIYOR
+  ERKEN_ERISIM
+  YAYINDA
+  ARSIVLENDI
+}
+
+// Yazilim projeleri (araçlar, kütüphaneler, uygulamalar, SaaS ürünleri vb.)
+model Project {
+  id            String        @id @default(cuid())
+  slug          String        @unique
+  title         String
+  tagline       String
+  description   String        @db.Text
+  status        ReleaseStatus @default(GELISTIRILIYOR)
+  coverImage    String?
+  gallery       String[]      @default([])
+  techStack     String[]      @default([])
+  features      String[]      @default([])
+  websiteUrl    String?
+  downloadUrl   String?
+  sourceUrl     String?
+  version       String?
+  progress      Int           @default(0) // 0-100, gelistirme yuzdesi
+  featured      Boolean       @default(false)
+  publishedAt   DateTime      @default(now())
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  updates       ProjectUpdate[]
+
+  @@index([status])
+  @@index([featured])
+}
+
+// Bir proje icin zaman icinde yayinlanan gelisme/duyuru kayitlari
+model ProjectUpdate {
+  id          String    @id @default(cuid())
+  project     Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId   String
+  title       String
+  body        String    @db.Text
+  createdAt   DateTime  @default(now())
+
+  @@index([projectId])
+}
+
+enum GamePlatform {
+  WEB
+  WINDOWS
+  MACOS
+  LINUX
+  ANDROID
+  IOS
+}
+
+// Gelistirilen oyunlar
+model Game {
+  id            String        @id @default(cuid())
+  slug          String        @unique
+  title         String
+  tagline       String
+  description   String        @db.Text
+  status        ReleaseStatus @default(GELISTIRILIYOR)
+  coverImage    String?
+  gallery       String[]      @default([])
+  genres        String[]      @default([])
+  platforms     GamePlatform[] @default([])
+  playUrl       String?       // web tabanliysa oynama linki
+  downloadUrl   String?       // indirilebilir surum linki
+  trailerUrl    String?
+  version       String?
+  progress      Int           @default(0)
+  featured      Boolean       @default(false)
+  publishedAt   DateTime      @default(now())
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([status])
+  @@index([featured])
+}
+
+// Blog yazilari (duyurular, gelisme guncellemeleri, teknik yazilar)
+model Post {
+  id            String    @id @default(cuid())
+  slug          String    @unique
+  title         String
+  excerpt       String
+  content       String    @db.Text
+  coverImage    String?
+  tags          String[]  @default([])
+  published     Boolean   @default(false)
+  publishedAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([published])
+  @@index([publishedAt])
+}
+
+// Iletisim formu mesajlari
+model ContactMessage {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  subject     String
+  message     String   @db.Text
+  read        Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
+
+// Bulten aboneleri
+model Subscriber {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  createdAt   DateTime @default(now())
+}

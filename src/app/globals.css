@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-fraunces: "Fraunces", serif;
+  --font-inter: "Inter", sans-serif;
+}
+
+* {
+  scrollbar-color: #7cb518 #12160f;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0e1210;
+  color: #e8e4d3;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124, 181, 24, 0.08), transparent),
+    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(139, 95, 191, 0.07), transparent);
+}
+
+/* Yirtik parsomen kenar - kartlar icin */
+.torn-top {
+  clip-path: polygon(
+    0% 3%, 3% 0%, 9% 2%, 16% 0%, 24% 2%, 31% 0%, 39% 1%, 47% 0%,
+    55% 2%, 63% 0%, 71% 1%, 79% 0%, 87% 2%, 94% 0%, 100% 2%, 100% 100%, 0% 100%
+  );
+}
+
+.torn-bottom {
+  clip-path: polygon(
+    0% 0%, 100% 0%, 100% 97%, 94% 100%, 87% 98%, 79% 100%, 71% 99%, 63% 100%,
+    55% 98%, 47% 100%, 39% 99%, 31% 100%, 24% 98%, 16% 100%, 9% 98%, 3% 100%, 0% 97%
+  );
+}
+
+.torn-card {
+  clip-path: polygon(
+    0% 2%, 3% 0%, 9% 1%, 16% 0%, 24% 1%, 31% 0%, 39% 2%, 47% 0%,
+    55% 1%, 63% 0%, 71% 2%, 79% 0%, 87% 1%, 94% 0%, 100% 2%,
+    100% 98%, 97% 100%, 91% 99%, 84% 100%, 76% 99%, 68% 100%,
+    60% 98%, 52% 100%, 44% 99%, 36% 100%, 28% 98%, 20% 100%,
+    12% 99%, 5% 100%, 0% 98%
+  );
+}
+
+.bg-noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--noise-url);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Runik nokta ayirici */
+.rune-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.rune-divider::before,
+.rune-divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, rgba(232, 228, 211, 0.25), transparent);
+}
+
+/* Markdown icerigi (blog gövde metni) */
+.prose-trog {
+  color: #d6cfb2;
+  line-height: 1.75;
+}
+.prose-trog h1,
+.prose-trog h2,
+.prose-trog h3 {
+  font-family: var(--font-fraunces);
+  color: #e8e4d3;
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+}
+.prose-trog h1 { font-size: 1.9rem; }
+.prose-trog h2 { font-size: 1.5rem; }
+.prose-trog h3 { font-size: 1.2rem; }
+.prose-trog p { margin-bottom: 1.25em; }
+.prose-trog a { color: #a6d94d; text-decoration: underline; text-underline-offset: 3px; }
+.prose-trog strong { color: #f3f0e6; }
+.prose-trog ul, .prose-trog ol { margin: 1em 0 1.25em 1.5em; }
+.prose-trog li { margin-bottom: 0.4em; }
+.prose-trog blockquote {
+  border-left: 3px solid #8b5fbf;
+  padding-left: 1rem;
+  color: #bfb587;
+  font-style: italic;
+  margin: 1.5em 0;
+}
+.prose-trog code {
+  background: rgba(124, 181, 24, 0.12);
+  color: #c4e687;
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+.prose-trog pre {
+  background: #0b0e09;
+  border: 1px solid rgba(124, 181, 24, 0.25);
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin-bottom: 1.5em;
+}
+.prose-trog pre code {
+  background: none;
+  padding: 0;
+}
+.prose-trog img {
+  border-radius: 2px;
+  margin: 1.5em 0;
+}
+
+/* Focus goruntusu - erisilebilirlik */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #7cb518;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
