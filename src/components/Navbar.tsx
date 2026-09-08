@@ -38,7 +38,7 @@ export default function Navbar() {
 
         <div className="game-sidebar__status">
           <span className="game-sidebar__status-dot" />
-          <span><b>SEFER AKTİF</b><small>Bataklık bölgesi</small></span>
+          <span><b>Trogoria</b></span>
         </div>
 
         <p className="game-sidebar__label">Dünya haritası</p>
@@ -61,7 +61,6 @@ export default function Navbar() {
           <FontAwesomeIcon icon={faKey} className="game-sidebar__login-icon" />
           <span>
             <b>Atölye girişi</b>
-            <small>Yönetim paneli</small>
           </span>
         </Link>
         <div className="game-sidebar__version">TROGWORKS // v1.0</div>
