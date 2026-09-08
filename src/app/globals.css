@@ -1,61 +1,14 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  /* --- Trogworks Atölyesi renk paleti --- */
-  --ink: #14120d;           /* en koyu zemin — is karası */
-  --surface: #1e1a13;       /* panel zemini */
-  --surface-raised: #29231a; /* kart zemini */
-  --surface-line: #3a3121;  /* ince ayraç çizgileri */
-
-  --goblin: #7c9a3e;        /* birincil goblin yeşili */
-  --goblin-bright: #a3c85a; /* hover / aktif yeşil */
-  --goblin-deep: #4f6428;   /* koyu yeşil gölge */
-
-  --brass: #c9922f;         /* pirinç — CTA / XP / vurgular */
-  --brass-bright: #e6ac47;
-  --brass-deep: #8a6320;
-
-  --leather: #5b4530;       /* deri kahvesi — kenarlıklar */
-  --leather-dark: #3a2c1e;
-
-  --parchment: #ecdfc0;     /* açık parşömen — kartlar üstü metin */
-  --ink-text: #f1ead8;      /* ana gövde metni (koyu zemin üstü) */
-  --muted-text: #b3a890;    /* ikincil metin */
-
-  --crimson: #a13f3f;       /* nadir / uyarı rozetleri */
-  --emerald: #3f8f6f;       /* nadir rozet 2 */
-}
-
-@theme inline {
-  --color-ink: var(--ink);
-  --color-surface: var(--surface);
-  --color-surface-raised: var(--surface-raised);
-  --color-surface-line: var(--surface-line);
-
-  --color-goblin: var(--goblin);
-  --color-goblin-bright: var(--goblin-bright);
-  --color-goblin-deep: var(--goblin-deep);
-
-  --color-brass: var(--brass);
-  --color-brass-bright: var(--brass-bright);
-  --color-brass-deep: var(--brass-deep);
-
-  --color-leather: var(--leather);
-  --color-leather-dark: var(--leather-dark);
-
-  --color-parchment: var(--parchment);
-  --color-ink-text: var(--ink-text);
-  --color-muted-text: var(--muted-text);
-
-  --color-crimson: var(--crimson);
-  --color-emerald: var(--emerald);
-
-  --font-display: "Fredericka the Great", cursive;
-  --font-body: "Baloo 2", ui-sans-serif, system-ui, sans-serif;
+  --font-cinzel: "Cinzel", serif;
+  --font-inter: "Inter", sans-serif;
 }
 
 * {
-  box-sizing: border-box;
+  scrollbar-color: #7BC925 #0C0F0D;
 }
 
 html {
@@ -63,62 +16,184 @@ html {
 }
 
 body {
-  background-color: var(--ink);
-  color: var(--ink-text);
-  font-family: var(--font-body), sans-serif;
+  background-color: #0C0F0D;
+  color: #E8DFC4;
   background-image:
-    radial-gradient(ellipse 900px 500px at 12% -10%, rgba(124, 154, 62, 0.10), transparent 60%),
-    radial-gradient(ellipse 700px 500px at 100% 10%, rgba(201, 146, 47, 0.08), transparent 60%),
-    repeating-linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 0.012) 0px,
-      rgba(255, 255, 255, 0.012) 1px,
-      transparent 1px,
-      transparent 3px
-    );
-  background-attachment: fixed;
+    linear-gradient(rgba(155,226,60,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(155,226,60,0.04) 1px, transparent 1px),
+    radial-gradient(ellipse 70% 45% at 50% -5%, rgba(139,82,214,0.10), transparent),
+    radial-gradient(ellipse 55% 40% at 100% 15%, rgba(123,201,37,0.08), transparent);
+  background-size: 32px 32px, 32px 32px, auto, auto;
 }
 
-h1, h2, h3, h4, .font-display {
-  font-family: var(--font-display), cursive;
-  letter-spacing: 0.01em;
-}
-
-/* Rivet / cıvata köşe deseni — panel kenarlarında kullanılır */
-.rivet-corners {
+/* ===== HUD PANEL: notched-corner game dialog box ===== */
+.hud-panel {
   position: relative;
+  background: linear-gradient(180deg, #171F21 0%, #12181A 100%);
+  border: 1px solid rgba(201,161,92,0.35);
+  box-shadow: 0 0 0 4px rgba(7,9,10,0.9), 0 8px 24px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.06);
+  clip-path: polygon(
+    0 12px, 12px 0, calc(100% - 12px) 0, 100% 12px,
+    100% calc(100% - 12px), calc(100% - 12px) 100%,
+    12px 100%, 0 calc(100% - 12px)
+  );
 }
-.rivet-corners::before,
-.rivet-corners::after {
+
+.hud-panel::before {
   content: "";
   position: absolute;
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: radial-gradient(circle at 35% 35%, var(--brass-bright), var(--brass-deep) 70%);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.5);
-  top: 10px;
-}
-.rivet-corners::before { left: 10px; }
-.rivet-corners::after { right: 10px; }
-
-/* Kenarlıklı, hafif dokulu "atölye paneli" kartı */
-.workshop-panel {
-  background: linear-gradient(180deg, var(--surface-raised), var(--surface));
-  border: 1px solid var(--surface-line);
-  box-shadow: 0 10px 30px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.03);
+  inset: 0;
+  pointer-events: none;
+  border: 1px solid rgba(0,0,0,0.4);
+  clip-path: inherit;
 }
 
-.text-outline {
-  -webkit-text-stroke: 1.5px var(--leather-dark);
-  paint-order: stroke fill;
+.hud-panel-hover {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.hud-panel-hover:hover {
+  border-color: rgba(184,242,106,0.55);
+  box-shadow: 0 0 0 4px rgba(7,9,10,0.9), 0 0 28px rgba(155,226,60,0.22), inset 0 1px 0 rgba(255,255,255,0.08);
+  transform: translateY(-2px);
 }
 
-/* İnce kaydırma çubuğu */
-::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: var(--ink); }
-::-webkit-scrollbar-thumb { background: var(--leather); border-radius: 999px; border: 2px solid var(--ink); }
+/* Small notch corners for tags/badges */
+.hud-tag {
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+}
+
+/* ===== HUD BUTTON ===== */
+.btn-hud {
+  position: relative;
+  font-family: var(--font-display);
+  letter-spacing: 0.03em;
+  border: 1px solid rgba(201,161,92,0.5);
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+.btn-hud:hover {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
+}
+.btn-hud:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+/* ===== STAT / PROGRESS BAR (health / mana style) ===== */
+.stat-bar-track {
+  position: relative;
+  height: 14px;
+  background: #0A0D0D;
+  border: 1px solid rgba(201,161,92,0.4);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.7);
+  clip-path: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px);
+  overflow: hidden;
+}
+.stat-bar-fill {
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    #7BC925,
+    #9BE23C 8px,
+    #7BC925 16px
+  );
+  box-shadow: 0 0 10px rgba(155,226,60,0.5);
+  transition: width 0.4s ease;
+}
+
+/* ===== Rune divider ===== */
+.rune-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.rune-divider::before,
+.rune-divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, rgba(201,161,92,0.4), transparent);
+}
+
+/* ===== Markdown blog content ===== */
+.prose-trog {
+  color: #D4C69E;
+  line-height: 1.75;
+}
+.prose-trog h1,
+.prose-trog h2,
+.prose-trog h3 {
+  font-family: var(--font-cinzel);
+  color: #F5EFDD;
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+}
+.prose-trog h1 { font-size: 1.9rem; }
+.prose-trog h2 { font-size: 1.5rem; }
+.prose-trog h3 { font-size: 1.2rem; }
+.prose-trog p { margin-bottom: 1.25em; }
+.prose-trog a { color: #9BE23C; text-decoration: underline; text-underline-offset: 3px; }
+.prose-trog strong { color: #F5EFDD; }
+.prose-trog ul, .prose-trog ol { margin: 1em 0 1.25em 1.5em; }
+.prose-trog li { margin-bottom: 0.4em; }
+.prose-trog blockquote {
+  border-left: 3px solid #8F52D6;
+  padding-left: 1rem;
+  color: #B2A47C;
+  font-style: italic;
+  margin: 1.5em 0;
+}
+.prose-trog code {
+  background: rgba(123,201,37,0.12);
+  color: #B8F26A;
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+.prose-trog pre {
+  background: #07090A;
+  border: 1px solid rgba(123,201,37,0.25);
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin-bottom: 1.5em;
+}
+.prose-trog pre code { background: none; padding: 0; }
+.prose-trog img { border-radius: 2px; margin: 1.5em 0; }
+
+/* Speech bubble for mascot callouts */
+.speech-bubble {
+  position: relative;
+  background: #171F21;
+  border: 1px solid rgba(201,161,92,0.4);
+  border-radius: 4px;
+}
+.speech-bubble::after {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 24px;
+  width: 0;
+  height: 0;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  border-right: 9px solid #171F21;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #9BE23C;
+  outline-offset: 2px;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
