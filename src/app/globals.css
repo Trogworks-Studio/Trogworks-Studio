@@ -200,11 +200,12 @@ body {
 .game-sidebar__link b { font-family: var(--font-cinzel); font-size: 0.78rem; font-weight: 600; }
 .game-sidebar__link small { margin-top: 0.18rem; font-size: 0.61rem; color: #718078; }
 .game-sidebar__link i { width: 5px; height: 5px; margin-left: auto; border-radius: 50%; background: var(--moss); box-shadow: 0 0 8px var(--moss); }
-.game-sidebar__legend { display: grid; gap: 0.55rem; margin: auto 0 1rem; padding: 0.9rem 0.75rem; border-top: 1px solid rgba(242,155,82,0.16); border-bottom: 1px solid rgba(242,155,82,0.16); color: #77867b; font-size: 0.65rem; }
-.game-sidebar__legend div { display: flex; align-items: center; gap: 0.5rem; }
-.legend-dot { width: 6px; height: 6px; border-radius: 50%; }
-.legend-dot--green { background: var(--moss); box-shadow: 0 0 7px var(--moss); }
-.legend-dot--orange { background: var(--ember); box-shadow: 0 0 7px var(--ember); }
+.game-sidebar__login { display: flex; align-items: center; gap: 0.7rem; margin: auto 0 1rem; padding: 0.8rem 0.75rem; border: 1px solid rgba(242,155,82,0.3); border-radius: 8px; background: rgba(242,155,82,0.06); color: #c7bca0; transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease; }
+.game-sidebar__login:hover { border-color: rgba(182,216,75,0.55); background: rgba(182,216,75,0.1); color: var(--moss); }
+.game-sidebar__login-icon { width: 16px; height: 16px; color: var(--ember); }
+.game-sidebar__login b, .game-sidebar__login small { display: block; }
+.game-sidebar__login b { font-family: var(--font-cinzel); font-size: 0.7rem; }
+.game-sidebar__login small { margin-top: 0.18rem; color: #718078; font-size: 0.6rem; }
 .game-sidebar__version { color: #52635b; font-size: 0.58rem; letter-spacing: 0.16em; text-align: center; }
 
 .mobile-gamebar { display: none; }

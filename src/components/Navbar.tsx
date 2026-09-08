@@ -9,6 +9,7 @@ import {
   faCampground,
   faEnvelope,
   faGamepad,
+  faKey,
   faMap,
   faScroll,
 } from "@fortawesome/free-solid-svg-icons";
@@ -56,10 +57,13 @@ export default function Navbar() {
           })}
         </nav>
 
-        <div className="game-sidebar__legend">
-          <div><span className="legend-dot legend-dot--green" /> <span>Yayında</span></div>
-          <div><span className="legend-dot legend-dot--orange" /> <span>Geliştiriliyor</span></div>
-        </div>
+        <Link href="/admin/login" className="game-sidebar__login">
+          <FontAwesomeIcon icon={faKey} className="game-sidebar__login-icon" />
+          <span>
+            <b>Atölye girişi</b>
+            <small>Yönetim paneli</small>
+          </span>
+        </Link>
         <div className="game-sidebar__version">TROGWORKS // v1.0</div>
       </aside>
 
