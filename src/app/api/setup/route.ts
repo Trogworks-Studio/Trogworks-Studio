@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 // Bu route, terminal kullanmadan tarayicidan tek seferlik admin kullanicisi
 // olusturmak icindir. Ziyaret sekli:
 //   https://SENIN-SITEN.vercel.app/api/setup?secret=SETUP_SECRET
@@ -18,7 +20,15 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  if (secret !== process.env.SETUP_SECRET) {
+  const configuredSecret = process.env.SETUP_SECRET.trim();
+  let decodedConfiguredSecret = configuredSecret;
+  try {
+    decodedConfiguredSecret = decodeURIComponent(configuredSecret);
+  } catch {
+    // Keep the original value when the environment variable contains an invalid escape.
+  }
+
+  if (secret?.trim() !== configuredSecret && secret?.trim() !== decodedConfiguredSecret) {
     return NextResponse.json({ error: "Yetkisiz: secret hatali." }, { status: 401 });
   }
 
