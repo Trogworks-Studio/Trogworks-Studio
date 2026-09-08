@@ -1,46 +1,33 @@
 {
-  "name": "trogworks-studio",
-  "version": "1.0.0",
+  "name": "trogworks",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && prisma db push && next build",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "prisma generate",
-    "db:push": "prisma db push",
-    "db:migrate": "prisma migrate dev",
-    "db:seed": "tsx prisma/seed.ts",
-    "db:studio": "prisma studio"
+    "lint": "eslint",
+    "db:seed": "node scripts/seed.js"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.6.0",
-    "@fortawesome/free-brands-svg-icons": "^6.6.0",
-    "@fortawesome/free-solid-svg-icons": "^6.6.0",
-    "@fortawesome/react-fontawesome": "^0.2.2",
-    "@prisma/client": "^5.20.0",
-    "bcryptjs": "^2.4.3",
-    "next": "14.2.16",
-    "next-auth": "^4.24.8",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-markdown": "^9.0.1",
-    "remark-gfm": "^4.0.0",
-    "slugify": "^1.6.6",
-    "zod": "^3.23.8"
+    "@fontsource/baloo-2": "^5.3.0",
+    "@fontsource/fredericka-the-great": "^5.3.0",
+    "@fortawesome/fontawesome-svg-core": "^7.3.1",
+    "@fortawesome/free-brands-svg-icons": "^7.3.1",
+    "@fortawesome/free-solid-svg-icons": "^7.3.1",
+    "@fortawesome/react-fontawesome": "^3.5.0",
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^13.0.3",
+    "next": "16.3.4",
+    "next-auth": "^5.0.0-beta.32",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "zod": "^4.5.4"
   },
   "devDependencies": {
-    "eslint": "^8.57.1",
-    "eslint-config-next": "14.2.16",
-    "@types/bcryptjs": "^2.4.6",
-    "@types/node": "^20.16.11",
-    "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.1",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.47",
-    "prisma": "^5.20.0",
-    "tailwindcss": "^3.4.13",
-    "tsx": "^4.19.1",
-    "typescript": "^5.6.3"
+    "@tailwindcss/postcss": "^4",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.4",
+    "tailwindcss": "^4"
   }
 }
