@@ -61,14 +61,19 @@ export default async function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden border-b border-bronze-700/40">
-        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-          <div>
+      <section className="game-hero relative overflow-hidden border-b border-bronze-700/40">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div className="reveal-up">
             <p className="rune-divider justify-start font-display text-xs uppercase tracking-[0.3em] text-hex-300 before:hidden">
               <FontAwesomeIcon icon={faShieldHalved} className="h-3.5 w-3.5" />
               Bataklıkta kurulu bir yazılım atölyesi
             </p>
-            <h1 className="mt-5 font-display text-4xl leading-[1.1] text-parchment-100 sm:text-6xl">
+            <div className="mb-5 flex items-center gap-3 text-[10px] uppercase tracking-[0.25em] text-bronze-300">
+              <span className="hero-stamp">Quest 001</span>
+              <span className="h-px w-10 bg-bronze-400/60" />
+              <span>Yeni dünya kaydı</span>
+            </div>
+            <h1 className="max-w-3xl font-display text-4xl leading-[1.05] text-parchment-100 sm:text-6xl lg:text-7xl">
               Taşların altından
               <br />
               <span className="text-vex-400">çalışan yazılımlar</span>{" "}
@@ -111,8 +116,9 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-sm">
-            <div className="animate-float relative mx-auto aspect-square w-full max-w-xs">
+          <div className="reveal-up reveal-delay-1 relative mx-auto w-full max-w-sm">
+            <div className="hero-radar absolute inset-0 m-auto aspect-square w-[92%]" aria-hidden />
+            <div className="hero-avatar relative mx-auto aspect-square w-full max-w-xs">
               <Image
                 src="/trog/wrench.webp"
                 alt="Trogworks maskotu, elinde bir İngiliz anahtarıyla"
@@ -124,14 +130,8 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-vex-600/10 blur-3xl"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-10 bottom-0 h-64 w-64 rounded-full bg-hex-600/10 blur-3xl"
-        />
+        <div aria-hidden className="hero-spark hero-spark-one" />
+        <div aria-hidden className="hero-spark hero-spark-two" />
       </section>
 
       {/* Mascot intro line */}

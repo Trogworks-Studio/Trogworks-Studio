@@ -10,9 +10,9 @@ export default function GameCard({ game }: { game: Game }) {
   return (
     <Link
       href={`/games/${game.slug}`}
-      className="hud-panel hud-panel-hover group flex flex-col overflow-hidden"
+      className="mission-card hud-panel hud-panel-hover group flex flex-col overflow-hidden"
     >
-      <div className="relative h-40 w-full overflow-hidden bg-ink-700">
+      <div className="mission-card__media relative h-40 w-full overflow-hidden bg-ink-700">
         {game.coverImage ? (
           <Image
             src={game.coverImage}
@@ -26,6 +26,7 @@ export default function GameCard({ game }: { game: Game }) {
           </div>
         )}
         <div className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-ink-950/80 to-transparent" />
+        <span className="absolute bottom-2 right-3 font-display text-[9px] uppercase tracking-[0.2em] text-parchment-300/70">Arena scan</span>
         <div className="absolute left-3 top-3">
           <StatusBadge status={game.status} />
         </div>

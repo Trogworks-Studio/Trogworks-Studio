@@ -20,15 +20,15 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-bronze-700/50 bg-ink-950/95 backdrop-blur">
-      <div className="h-[3px] w-full bg-gradient-to-r from-transparent via-vex-500/60 to-transparent" />
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
+    <header className="game-nav sticky top-0 z-50">
+      <div className="mx-auto max-w-7xl px-3 pt-3 sm:px-5">
+        <nav className="game-nav__deck flex items-center justify-between gap-4 px-3 py-2 sm:px-4">
         <Link
           href="/"
-          className="group flex items-center gap-3"
+          className="group flex min-w-0 items-center gap-3"
           onClick={() => setOpen(false)}
         >
-          <span className="hud-panel relative h-11 w-11 shrink-0 overflow-hidden p-0.5">
+          <span className="game-nav__sigil hud-panel relative h-12 w-12 shrink-0 overflow-hidden p-0.5 shadow-hud">
             <Image
               src="/trog/logo.webp"
               alt="Trogworks Studio"
@@ -38,17 +38,24 @@ export default function Navbar() {
             />
           </span>
           <span className="flex flex-col leading-none">
-            <span className="font-display text-base tracking-wide text-parchment-100 group-hover:text-vex-400">
+            <span className="font-display text-base tracking-wide text-parchment-100 transition-colors group-hover:text-vex-400">
               TROGWORKS
             </span>
             <span className="mt-1 text-[10px] uppercase tracking-[0.25em] text-parchment-500">
-              Studio
+              World map
             </span>
           </span>
         </Link>
 
+        <div className="hidden items-center gap-2 lg:flex">
+          <span className="game-nav__beacon" aria-hidden />
+          <span className="text-[10px] uppercase tracking-[0.2em] text-parchment-500">
+            Sefer aktif
+          </span>
+        </div>
+
         <button
-          className="text-parchment-300 md:hidden"
+          className="game-nav__toggle text-parchment-300 md:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Menüyü kapat" : "Menüyü aç"}
           aria-expanded={open}
@@ -64,7 +71,7 @@ export default function Navbar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`hud-panel hud-panel-hover flex flex-col items-center px-4 py-1.5 transition-colors ${
+                  className={`game-nav__link hud-panel hud-panel-hover flex min-w-[92px] flex-col items-center px-4 py-2 transition-colors ${
                     active
                       ? "!border-vex-400/70 bg-vex-900/10 text-vex-300"
                       : "text-parchment-300"
@@ -81,16 +88,16 @@ export default function Navbar() {
             );
           })}
         </ul>
-      </nav>
+        </nav>
 
       {open && (
-        <ul className="flex flex-col gap-2 border-t border-bronze-700/40 px-5 py-4 md:hidden">
+        <ul className="game-nav__mobile mx-auto flex max-w-7xl flex-col gap-2 px-3 pb-3 sm:px-5 md:hidden">
           {links.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="hud-panel flex items-center justify-between px-4 py-2.5 text-parchment-200"
+                className="game-nav__mobile-link hud-panel flex items-center justify-between px-4 py-2.5 text-parchment-200"
               >
                 <span className="font-display text-sm">{link.label}</span>
                 <span className="text-[10px] uppercase tracking-[0.2em] text-parchment-500">

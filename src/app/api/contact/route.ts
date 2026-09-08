@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
+import { rateLimit } from "@/lib/rate-limit";
 
 const schema = z.object({
   name: z.string().min(1, "Ad gerekli").max(120),
@@ -11,6 +12,14 @@ const schema = z.object({
 
 export async function POST(req: NextRequest) {
   try {
+    const requestLimit = rateLimit(req, "contact", 5, 60 * 60 * 1000);
+    if (!requestLimit.allowed) {
+      return NextResponse.json(
+        { error: "Cok fazla istek gonderildi. Lutfen daha sonra tekrar dene." },
+        { status: 429, headers: { "Retry-After": String(requestLimit.retryAfter) } }
+      );
+    }
+
     const body = await req.json();
     const parsed = schema.safeParse(body);
 

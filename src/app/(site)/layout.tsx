@@ -7,10 +7,10 @@ export default function SiteLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <div className="world-shell">
       <Navbar />
-      <main className="min-h-[70vh]">{children}</main>
+      <main id="top" className="relative min-h-[70vh] overflow-hidden">{children}</main>
       <Footer />
-    </>
+    </div>
   );
 }

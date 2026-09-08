@@ -9,10 +9,10 @@ export default function BlogCard({ post }: { post: Post }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="hud-panel hud-panel-hover group flex flex-col overflow-hidden p-5"
+      className="mission-card hud-panel hud-panel-hover group flex flex-col overflow-hidden p-5"
     >
       {post.coverImage && (
-        <div className="relative -mx-5 -mt-5 mb-4 h-36 w-[calc(100%+2.5rem)] overflow-hidden">
+        <div className="mission-card__media relative -mx-5 -mt-5 mb-4 h-36 w-[calc(100%+2.5rem)] overflow-hidden">
           <Image
             src={post.coverImage}
             alt=""

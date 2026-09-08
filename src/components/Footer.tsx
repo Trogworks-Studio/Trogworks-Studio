@@ -2,12 +2,23 @@ import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faDiscord, faXTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faArrowUp, faCampground } from "@fortawesome/free-solid-svg-icons";
 import Newsletter from "./Newsletter";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-bronze-700/50 bg-ink-950">
-      <div className="mx-auto max-w-6xl px-5 py-14">
+    <footer className="game-console mt-10">
+      <div className="mx-auto max-w-7xl px-3 py-5 sm:px-5">
+        <div className="game-console__top flex flex-wrap items-center justify-between gap-3 px-4 py-3">
+          <div className="flex items-center gap-2 font-display text-xs uppercase tracking-[0.2em] text-bronze-300">
+            <FontAwesomeIcon icon={faCampground} className="h-3.5 w-3.5" />
+            Trogworks command deck
+          </div>
+          <a href="#top" className="flex items-center gap-2 text-xs text-parchment-500 hover:text-vex-300">
+            Haritanın başı <FontAwesomeIcon icon={faArrowUp} className="h-3 w-3" />
+          </a>
+        </div>
+        <div className="grid gap-10 px-1 py-10 md:grid-cols-[1.3fr_1fr_1fr_1.2fr]">
         <div className="grid gap-10 md:grid-cols-[1.3fr_1fr_1fr_1.2fr]">
           <div>
             <div className="flex items-center gap-3">
@@ -78,7 +89,7 @@ export default function Footer() {
           <Newsletter />
         </div>
 
-        <div className="rune-divider mt-12 mb-6 text-bronze-700">
+        <div className="rune-divider mt-4 mb-6 text-bronze-700">
           <span className="text-xs text-bronze-500">◆</span>
         </div>
 

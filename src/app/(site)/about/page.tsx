@@ -40,18 +40,25 @@ const values = [
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-4xl px-5 py-16">
+    <div className="mx-auto max-w-5xl px-5 py-16 sm:py-20">
       <SectionHeading
         kicker="Bataklıkta bir atölye"
         title="Trogworks Studio kimdir?"
         description="Trogworks Studio, yazılım araçları ve oyunlar üzerine çalışan bağımsız bir atölyedir. Adımızı, işini sessizce ve inatla yapan bataklık trollerinden aldık: görünmez ama her zaman çalışıyoruz."
       />
 
-      <div className="mt-14 grid gap-6 sm:grid-cols-2">
+      <div className="mt-14 grid gap-5 sm:grid-cols-2">
         {values.map((value) => (
-          <div key={value.title} className="hud-panel p-6">
-            <FontAwesomeIcon icon={value.icon} className="h-6 w-6 text-vex-400" />
-            <h3 className="mt-4 font-display text-lg text-parchment-100">
+          <div key={value.title} className="hud-panel hud-panel-hover p-6 sm:p-7">
+            <div className="flex items-center gap-3">
+              <span className="grid h-10 w-10 place-items-center rounded-full bg-vex-500/15 text-vex-300 ring-1 ring-vex-400/30">
+                <FontAwesomeIcon icon={value.icon} className="h-5 w-5" />
+              </span>
+              <span className="font-display text-xs uppercase tracking-[0.2em] text-bronze-300">
+                Özellik {values.indexOf(value) + 1}
+              </span>
+            </div>
+            <h3 className="mt-5 font-display text-lg text-parchment-100">
               {value.title}
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-parchment-500">
@@ -61,9 +68,10 @@ export default function AboutPage() {
         ))}
       </div>
 
-      <div className="mt-16 grid items-center gap-10 lg:grid-cols-[1fr_260px]">
+      <div className="hud-panel mt-16 grid items-center gap-10 p-7 sm:p-10 lg:grid-cols-[1fr_260px]">
         <div>
-          <h2 className="font-display text-2xl text-parchment-100">Nasıl çalışıyoruz</h2>
+          <p className="font-display text-xs uppercase tracking-[0.25em] text-hex-300">Atölye günlüğü</p>
+          <h2 className="mt-3 font-display text-2xl text-parchment-100">Nasıl çalışıyoruz</h2>
           <p className="mt-4 leading-relaxed text-parchment-400">
             Her yeni fikir önce atölyenin iç panosunda tartışılır, sonra küçük
             bir prototip haline gelir. Prototip belli bir olgunluğa

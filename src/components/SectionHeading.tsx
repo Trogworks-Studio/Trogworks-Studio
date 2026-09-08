@@ -10,7 +10,7 @@ export default function SectionHeading({
   align?: "left" | "center";
 }) {
   return (
-    <div className={align === "center" ? "text-center" : "text-left"}>
+    <div className={`section-heading ${align === "center" ? "text-center" : "text-left"}`}>
       {kicker && (
         <p className="rune-divider justify-start font-display text-xs uppercase tracking-[0.3em] text-hex-300 before:hidden after:hidden">
           {kicker}
