@@ -30,12 +30,13 @@ export default function Newsletter() {
   }
 
   return (
-    <div>
-      <h3 className="font-display text-xs uppercase tracking-[0.2em] text-bronze-400">
-        Bataklık Postası
+    <div className="newsletter-console">
+      <p className="game-footer__eyebrow">Frekans 07 // Günlük sinyali</p>
+      <h3 className="mt-3 font-display text-xl text-parchment-100">
+        Yeni kayıtları al
       </h3>
-      <p className="mt-3 text-sm text-parchment-500">
-        Yeni sürümler ve yazılar çıkınca haberin olsun.
+      <p className="mt-2 text-sm leading-relaxed text-parchment-500">
+        Yeni sürümler ve yazılar çıktığında sinyalini aç.
       </p>
       {status === "done" ? (
         <p className="mt-3 flex items-center gap-2 text-sm text-vex-400">
@@ -54,7 +55,7 @@ export default function Newsletter() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="sen@bataklik.com"
-            className="hud-panel w-full min-w-0 bg-ink-800 px-3 py-2 text-sm text-parchment-200 placeholder:text-parchment-500/50 focus:outline-none"
+            className="hud-panel w-full min-w-0 bg-ink-800 px-3 py-2.5 text-sm text-parchment-200 placeholder:text-parchment-500/50 focus:outline-none"
           />
           <button
             type="submit"
