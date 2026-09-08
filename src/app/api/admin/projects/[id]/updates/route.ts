@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { getAdminSession } from "@/lib/admin-auth";
 import { prisma } from "@/lib/prisma";
 import { projectUpdateSchema } from "@/lib/validation";
 
@@ -8,7 +7,7 @@ export async function POST(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const session = await getServerSession(authOptions);
+  const session = await getAdminSession();
   if (!session) return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
 
   try {
@@ -19,6 +18,14 @@ export async function POST(
         { error: parsed.error.errors[0]?.message || "Gecersiz veri" },
         { status: 400 }
       );
+    }
+
+    const project = await prisma.project.findUnique({
+      where: { id: params.id },
+      select: { id: true },
+    });
+    if (!project) {
+      return NextResponse.json({ error: "Proje bulunamadi" }, { status: 404 });
     }
 
     const update = await prisma.projectUpdate.create({

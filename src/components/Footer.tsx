@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faCircleInfo, faSatelliteDish } from "@fortawesome/free-solid-svg-icons";
 import Newsletter from "./Newsletter";
+import CommunityWidget from "./CommunityWidget";
 
 export default function Footer() {
   return (
@@ -18,6 +19,7 @@ export default function Footer() {
           <h2>Haritanın dışındaki<br /><em>işleri</em> yapıyoruz.</h2>
           <p className="game-footer__muted">Bağımsız oyunlar, araçlar ve deneyler. Her kayıt gerçek bir üretim izidir.</p>
         </div>
+        <CommunityWidget />
         <Newsletter />
       </div>
       <div className="game-footer__base">

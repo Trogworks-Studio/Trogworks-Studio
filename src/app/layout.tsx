@@ -75,7 +75,7 @@ export default function RootLayout({
     logo: `${siteUrl}/trog/logo.webp`,
     description:
       "Yazilim araclari, oyunlar ve gelisme duyurularinin yayinlandigi bagimsiz yazilim atolyesi.",
-    sameAs: ["https://github.com", "https://discord.com", "https://x.com"],
+    sameAs: ["https://discord.gg/M9exXDmgqS"],
   };
 
   return (

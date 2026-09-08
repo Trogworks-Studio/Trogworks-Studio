@@ -1,17 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { getAdminSession } from "@/lib/admin-auth";
 import { prisma } from "@/lib/prisma";
 
 export async function DELETE(
   _req: NextRequest,
   { params }: { params: { id: string; updateId: string } }
 ) {
-  const session = await getServerSession(authOptions);
+  const session = await getAdminSession();
   if (!session) return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
 
   try {
-    await prisma.projectUpdate.delete({ where: { id: params.updateId } });
+    const update = await prisma.projectUpdate.findFirst({
+      where: { id: params.updateId, projectId: params.id },
+      select: { id: true },
+    });
+    if (!update) {
+      return NextResponse.json({ error: "Bulunamadi" }, { status: 404 });
+    }
+
+    await prisma.projectUpdate.delete({ where: { id: update.id } });
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("admin project update DELETE error", err);

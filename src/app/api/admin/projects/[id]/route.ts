@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { getAdminSession } from "@/lib/admin-auth";
 import { prisma } from "@/lib/prisma";
 import { projectSchema } from "@/lib/validation";
 
@@ -8,7 +7,7 @@ export async function GET(
   _req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const session = await getServerSession(authOptions);
+  const session = await getAdminSession();
   if (!session) return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
 
   const project = await prisma.project.findUnique({
@@ -24,7 +23,7 @@ export async function PATCH(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const session = await getServerSession(authOptions);
+  const session = await getAdminSession();
   if (!session) return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
 
   try {
@@ -65,7 +64,7 @@ export async function DELETE(
   _req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const session = await getServerSession(authOptions);
+  const session = await getAdminSession();
   if (!session) return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
 
   try {
