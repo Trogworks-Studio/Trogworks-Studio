@@ -1,122 +1,52 @@
 # Trogworks Studio
 
-Bataklık temalı (Disenchantment esintili "Trog" konsepti), tam işlevsel bir
-yazılım stüdyosu sitesi. **Next.js 14 (App Router) + TypeScript + TailwindCSS +
-FontAwesome + Prisma/PostgreSQL + NextAuth** ile yazıldı.
+Trogworks Studio, bataklığın içinden çıkan fikirleri, oyunları ve projeleri bir araya getirdiğimiz yaratıcı geliştirme platformumuz.
 
-## Özellikler
+Burada temel olarak **projeleri takip edebilir, oyunları inceleyebilir, geliştirme sürecini görebilir ve blog içeriklerini okuyabilirsiniz.**
 
-- **Herkese açık site:** Ana sayfa, Projeler (liste + detay), Oyunlar
-  (liste + detay), Blog (liste + detay, Markdown destekli), Hakkımızda,
-  İletişim formu, bülten (newsletter) kaydı.
-- **Gerçek admin paneli:** `/admin/login` üzerinden giriş yapıp projeleri,
-  oyunları ve blog yazılarını ekleyip düzenleyebilir, silebilirsiniz. Her
-  proje için ayrıca zaman içindeki "gelişme kayıtları" eklenebilir.
-- **Gerçek veritabanı:** Tüm içerik PostgreSQL'de (Prisma ORM ile) saklanır;
-  hiçbir şey sabit kodlanmış değildir.
-- **SEO:** Dinamik `sitemap.xml`, `robots.txt`, her sayfa için özel
-  metadata/OpenGraph/Twitter etiketleri, JSON-LD yapısal veri
-  (Organization, SoftwareApplication, VideoGame, BlogPosting).
-- **Kimlik doğrulama:** NextAuth (credentials/e-posta+şifre), admin
-  rotaları middleware ile korunur.
+## 🐸 Platformda Neler Var?
 
-## Gereksinimler
+### 🎮 Oyunlar
 
-- Node.js 18.18 veya üzeri
-- Bir PostgreSQL veritabanı: en kolayı [Supabase](https://supabase.com) veya
-  [Neon](https://neon.tech) üzerinde ücretsiz bir proje açmak (ikisi de
-  dakikalar içinde bağlantı adresi verir).
+Geliştirdiğimiz ve üzerinde çalıştığımız oyunları buradan takip edebilirsiniz.
 
-## Kurulum
+Her oyunun kendi sayfasında oyun hakkında temel bilgiler, görseller ve geliştirme sürecine dair içerikler bulunur.
 
-1. Bağımlılıkları kurun:
+### 🛠️ Projeler
 
-   ```bash
-   npm install
-   ```
+Trogworks bünyesinde geliştirilen projeleri burada bulabilirsiniz.
 
-2. `.env.example` dosyasını `.env` olarak kopyalayın ve doldurun:
+Projelerin zaman içerisindeki gelişimini de takip edebilirsiniz. Yeni özellikler, değişiklikler ve önemli geliştirme aşamaları proje sayfalarına eklenir.
 
-   ```bash
-   cp .env.example .env
-   ```
+### 📝 Blog
 
-   - `DATABASE_URL` / `DIRECT_URL`: Supabase/Neon panelinden aldığınız
-     PostgreSQL bağlantı adresi. Supabase kullanıyorsanız "Connection
-     Pooling" adresini `DATABASE_URL`'e, "Direct connection" adresini
-     `DIRECT_URL`'e yazın (pooler olmayan basit kurulumlarda ikisi aynı
-     olabilir).
-   - `NEXTAUTH_SECRET`: `openssl rand -base64 32` komutuyla üretin.
-   - `ADMIN_EMAIL` / `ADMIN_PASSWORD` / `ADMIN_NAME`: İlk admin
-     kullanıcınızın bilgileri (seed script bunu oluşturur).
+Stüdyo içerisindeki geliştirme süreci, oyun tasarımı ve çeşitli konulardaki yazılarımızı burada paylaşıyoruz.
 
-3. Veritabanı şemasını oluşturun:
+Blog yazıları düzenli olarak güncellenebilir ve yeni içerikler eklenebilir.
 
-   ```bash
-   npm run db:push
-   ```
+### 📬 İletişim
 
-4. İlk admin kullanıcısını ve örnek içerikleri ekleyin:
+Bizimle iletişime geçmek veya bir fikir, öneri ya da geri bildirim paylaşmak için iletişim formunu kullanabilirsiniz.
 
-   ```bash
-   npm run db:seed
-   ```
+### 📩 Bülten
 
-5. Geliştirme sunucusunu başlatın:
+Trogworks'teki yeni oyunlardan, projelerden ve önemli gelişmelerden haberdar olmak isterseniz bültene kayıt olabilirsiniz.
 
-   ```bash
-   npm run dev
-   ```
+## 🌿 Temel Mantık
 
-   Site: http://localhost:3000
-   Admin paneli: http://localhost:3000/admin/login
-   (`.env` dosyasındaki `ADMIN_EMAIL` / `ADMIN_PASSWORD` ile giriş yapın)
+Platformu mümkün olduğunca basit tuttuk.
 
-## Görseller hakkında
+**Oyunlar →** Neler geliştiriyoruz?
+**Projeler →** Neler üzerinde çalışıyoruz?
+**Blog →** Neler oluyor?
+**İletişim →** Bize nasıl ulaşabilirsiniz?
 
-Bu proje bilinçli olarak bir **dosya yükleme** sistemi içermez (ekstra
-bir depolama servisi — S3, Cloudinary vb. — gerektirmemesi için). Bunun
-yerine admin panelindeki "Kapak görseli URL" gibi alanlara, görseli önceden
-başka bir yere (örn. Cloudinary, Imgur, Supabase Storage, ya da kendi
-CDN'iniz) yükleyip oradan aldığınız linki yapıştırırsınız.
+Yeni içerikler eklendikçe bunları platform üzerinden takip edebilirsiniz.
 
-`/public` klasörüne kendi `favicon.ico`, `og-default.png` (1200×630),
-`icon-192.png` ve `icon-512.png` dosyalarınızı eklemeniz önerilir — bu
-dosyalar `layout.tsx` ve `manifest.ts` içinde referans alınmıştır ama proje
-içine hazır olarak konmamıştır.
+## 🐸 Trogworks'e Hoş Geldiniz
 
-## Vercel'e Deploy
+Trogworks'i sadece oyunlarımızı göstereceğimiz bir site olarak değil, zaman içerisinde büyüyen kendi küçük evrenimiz olarak geliştiriyoruz.
 
-1. Depoyu GitHub'a itin, Vercel'de "Import Project" ile bağlayın.
-2. Vercel proje ayarlarına `.env` dosyasındaki tüm değişkenleri girin
-   (`NEXTAUTH_URL`'i canlı domain'inizle güncelleyin).
-3. Build komutu zaten `prisma generate && next build` olarak ayarlı
-   (`package.json` → `build` script'i).
-4. İlk deploy sonrası, veritabanını canlıya taşımak için yerelde
-   `DATABASE_URL`'i prod veritabanına çevirip bir kez
-   `npm run db:push && npm run db:seed` çalıştırmanız yeterli.
+Yeni oyunlar, yeni projeler ve yeni içeriklerle burayı sürekli geliştirmeye devam edeceğiz.
 
-## Proje Yapısı
-
-```
-src/
-  app/
-    (site)/         → herkese açık sayfalar (Navbar/Footer ile)
-    admin/           → korumalı yönetim paneli
-    api/             → route handler'lar (contact, subscribe, auth, admin CRUD)
-    sitemap.ts, robots.ts, manifest.ts
-  components/        → paylaşılan ve admin'e özel React bileşenleri
-  lib/                → prisma client, auth, yardımcı fonksiyonlar, zod şemaları
-  types/               → paylaşılan TypeScript tipleri
-prisma/
-  schema.prisma       → veritabanı modeli
-  seed.ts             → ilk admin kullanıcısı + örnek içerik
-```
-
-## Tema
-
-Renk paleti ve tipografi `tailwind.config.ts` ve `src/app/globals.css`
-içinde tanımlıdır: bataklık yeşili/siyahı (`bog`, `ooze`), mistik mor
-(`rune`), kemik/parşömen (`bone`) ve kor turuncusu (`ember`). Başlıklarda
-"Fraunces", gövde metinde "Inter" fontu kullanılır (ikisi de
-`next/font/google` ile otomatik yüklenir, ek kuruluma gerek yoktur).
+**Bataklığa hoş geldiniz.**
