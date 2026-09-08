@@ -37,7 +37,9 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const existing = await prisma.user.findUnique({ where: { email: adminEmail } });
+    const existing = await prisma.user.findFirst({
+      where: { email: { equals: adminEmail, mode: "insensitive" } },
+    });
     if (existing) {
       const passwordHash = await bcrypt.hash(adminPassword, 12);
       await prisma.user.update({
