@@ -6,8 +6,8 @@ import { prisma } from "@/lib/prisma";
 // olusturmak icindir. Ziyaret sekli:
 //   https://SENIN-SITEN.vercel.app/api/setup?secret=SETUP_SECRET
 // SETUP_SECRET, Vercel ortam degiskenlerine eklenen gizli bir kelimedir.
-// Islem tamamlandiktan sonra bu adresi tekrar ziyaret etmenin bir zarari
-// yoktur (ayni admin zaten varsa hicbir sey yapmaz).
+// Islem tamamlandiktan sonra bu adresi tekrar ziyaret etmek, ortam
+// degiskenlerindeki admin sifresini mevcut hesaba yeniden uygular.
 export async function GET(req: NextRequest) {
   const secret = req.nextUrl.searchParams.get("secret");
 
@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Yetkisiz: secret hatali." }, { status: 401 });
   }
 
-  const adminEmail = process.env.ADMIN_EMAIL;
+  const adminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
   const adminPassword = process.env.ADMIN_PASSWORD;
   const adminName = process.env.ADMIN_NAME || "Atolye Sahibi";
 
@@ -39,9 +39,19 @@ export async function GET(req: NextRequest) {
   try {
     const existing = await prisma.user.findUnique({ where: { email: adminEmail } });
     if (existing) {
+      const passwordHash = await bcrypt.hash(adminPassword, 12);
+      await prisma.user.update({
+        where: { id: existing.id },
+        data: {
+          name: adminName,
+          passwordHash,
+          role: "ADMIN",
+        },
+      });
+
       return NextResponse.json({
         ok: true,
-        message: `"${adminEmail}" adresiyle bir admin kullanicisi zaten var. Herhangi bir sey degistirilmedi.`,
+        message: `"${adminEmail}" admin hesabinin sifresi guncellendi. Simdi /admin/login adresinden giris yapabilirsin.`,
       });
     }
 
